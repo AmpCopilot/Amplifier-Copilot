@@ -1,0 +1,110 @@
+// Generated for: spectre  
+ // Generated on: Jan 26 11:46:35 2024  
+ // Design library name: TSMC22ULL_Std_AMP_LIB  
+ // Design cell name: TB_TRANTwoStFixIRatio_SMCNR_Pin_2  
+ // Design view name: schematic  
+ simulator lang=spectre  
+ global 0  
+ parameters MOSFET_5_2_L_LOAD1_NMOS=7.0u MOSFET_5_2_M_LOAD1_NMOS=1.0 \ 
+ MOSFET_5_2_W_LOAD1_NMOS=2.0u MOSFET_0_1_L_BIASCM0_PMOS=7.0u \ 
+ MOSFET_0_1_M_BIASCM0_PMOS=2.0 MOSFET_0_1_W_BIASCM0_PMOS=2.0u \ 
+ MOSFET_3_2_L_gm1_PMOS=2.0u MOSFET_3_2_M_gm1_PMOS=1.0 \ 
+ MOSFET_3_2_W_gm1_PMOS=2.0u MOSFET_7_1_L_gm2_NMOS=2.0u \ 
+ MOSFET_7_1_M_gm2_NMOS=2.0 MOSFET_7_1_W_gm2_NMOS=2.0u CAPACITOR_0=0.25p \ 
+ RESISTOR_0=14.388k CURRENT_0_BIAS=5.0u CLOAD=1p VCM=2 VDD=5 
+ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/c018bcd_gen2_v1d6_usage.scs" section=fs_lib 
+include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/c018bcd_gen2_v1d6_usage.scs" section=pre_simu 
+// Library name: TSMC22ULL_Std_AMP_LIB  
+ // Cell name: TwoStFixIRatio_SMCNR_Pin_2  
+ // View name: schematic  
+ subckt TwoStFixIRatio_SMCNR_Pin_2 GNDA VDDA VINN VINP VOUT  
+     M0 (net011 net011 VDDA VDDA) pch5_lvt_mac l=MOSFET_0_1_L_BIASCM0_PMOS \  
+         w=MOSFET_0_1_W_BIASCM0_PMOS*1 multi=MOSFET_0_1_M_BIASCM0_PMOS nf=1 \  
+         sd=100n \  
+         ad=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1e-07))*MOSFET_0_1_W_BIASCM0_PMOS \  
+         as=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*(8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0))*MOSFET_0_1_W_BIASCM0_PMOS \  
+         pd=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_BIASCM0_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1e-07)*2+1*MOSFET_0_1_W_BIASCM0_PMOS) \  
+         ps=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_BIASCM0_PMOS)+(1+1-int((1+1)/2)*2)*((8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0)*2+(1+2)*MOSFET_0_1_W_BIASCM0_PMOS) \  
+         spa=120.0n spa1=120.0n dfm_flag=0  
+     M2 (VOUT net011 VDDA VDDA) pch5_lvt_mac l=MOSFET_0_1_L_BIASCM0_PMOS \  
+         w=MOSFET_0_1_W_BIASCM0_PMOS*1 multi=MOSFET_0_1_M_BIASCM0_PMOS*8 \  
+         nf=1 sd=100n \  
+         ad=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1e-07))*MOSFET_0_1_W_BIASCM0_PMOS \  
+         as=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*(8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0))*MOSFET_0_1_W_BIASCM0_PMOS \  
+         pd=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_BIASCM0_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1e-07)*2+1*MOSFET_0_1_W_BIASCM0_PMOS) \  
+         ps=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_BIASCM0_PMOS)+(1+1-int((1+1)/2)*2)*((8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0)*2+(1+2)*MOSFET_0_1_W_BIASCM0_PMOS) \  
+         spa=120.0n spa1=120.0n dfm_flag=0  
+     M1 (net73 net011 VDDA VDDA) pch5_lvt_mac l=MOSFET_0_1_L_BIASCM0_PMOS \  
+         w=MOSFET_0_1_W_BIASCM0_PMOS*1 multi=MOSFET_0_1_M_BIASCM0_PMOS*2 \  
+         nf=1 sd=100n \  
+         ad=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1e-07))*MOSFET_0_1_W_BIASCM0_PMOS \  
+         as=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*(8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0))*MOSFET_0_1_W_BIASCM0_PMOS \  
+         pd=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_BIASCM0_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1e-07)*2+1*MOSFET_0_1_W_BIASCM0_PMOS) \  
+         ps=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_BIASCM0_PMOS)+(1+1-int((1+1)/2)*2)*((8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0)*2+(1+2)*MOSFET_0_1_W_BIASCM0_PMOS) \  
+         spa=120.0n spa1=120.0n dfm_flag=0  
+     M3 (OUTP VINN net73 net73) pch5_lvt_mac l=MOSFET_3_2_L_gm1_PMOS \  
+         w=MOSFET_3_2_W_gm1_PMOS*1 multi=MOSFET_3_2_M_gm1_PMOS nf=1 sd=100n \  
+         ad=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1e-07))*MOSFET_3_2_W_gm1_PMOS \  
+         as=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*(8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0))*MOSFET_3_2_W_gm1_PMOS \  
+         pd=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_3_2_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1e-07)*2+1*MOSFET_3_2_W_gm1_PMOS) \  
+         ps=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_3_2_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*((8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0)*2+(1+2)*MOSFET_3_2_W_gm1_PMOS) \  
+         spa=120.0n spa1=120.0n dfm_flag=0  
+     M4 (OUTN VINP net73 net73) pch5_lvt_mac l=MOSFET_3_2_L_gm1_PMOS \  
+         w=MOSFET_3_2_W_gm1_PMOS*1 multi=MOSFET_3_2_M_gm1_PMOS nf=1 sd=100n \  
+         ad=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1e-07))*MOSFET_3_2_W_gm1_PMOS \  
+         as=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*(8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0))*MOSFET_3_2_W_gm1_PMOS \  
+         pd=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_3_2_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1e-07)*2+1*MOSFET_3_2_W_gm1_PMOS) \  
+         ps=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_3_2_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*((8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0)*2+(1+2)*MOSFET_3_2_W_gm1_PMOS) \  
+         spa=120.0n spa1=120.0n dfm_flag=0  
+     R0 (VOUT net72) resistor r=RESISTOR_0  
+     C0 (OUTN net72) capacitor c=CAPACITOR_0  
+     I6 (net011 GNDA) isource dc=CURRENT_0_BIAS type=dc  
+     M6 (OUTN OUTP GNDA GNDA) nch5_lvt_gb l=MOSFET_5_2_L_LOAD1_NMOS \  
+         w=MOSFET_5_2_W_LOAD1_NMOS*1 multi=MOSFET_5_2_M_LOAD1_NMOS nf=1 \  
+         sd=100n \  
+         ad=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1e-07))*MOSFET_5_2_W_LOAD1_NMOS \  
+         as=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*(8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0))*MOSFET_5_2_W_LOAD1_NMOS \  
+         pd=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_5_2_W_LOAD1_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1e-07)*2+1*MOSFET_5_2_W_LOAD1_NMOS) \  
+         ps=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_5_2_W_LOAD1_NMOS)+(1+1-int((1+1)/2)*2)*((8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0)*2+(1+2)*MOSFET_5_2_W_LOAD1_NMOS) \  
+         spa=120.0n spa1=120.0n dfm_flag=0  
+     M5 (OUTP OUTP GNDA GNDA) nch5_lvt_gb l=MOSFET_5_2_L_LOAD1_NMOS \  
+         w=MOSFET_5_2_W_LOAD1_NMOS*1 multi=MOSFET_5_2_M_LOAD1_NMOS nf=1 \  
+         sd=100n \  
+         ad=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1e-07))*MOSFET_5_2_W_LOAD1_NMOS \  
+         as=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*(8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0))*MOSFET_5_2_W_LOAD1_NMOS \  
+         pd=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_5_2_W_LOAD1_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1e-07)*2+1*MOSFET_5_2_W_LOAD1_NMOS) \  
+         ps=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_5_2_W_LOAD1_NMOS)+(1+1-int((1+1)/2)*2)*((8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0)*2+(1+2)*MOSFET_5_2_W_LOAD1_NMOS) \  
+         spa=120.0n spa1=120.0n dfm_flag=0  
+     M7 (VOUT OUTN GNDA GNDA) nch5_lvt_gb l=MOSFET_7_1_L_gm2_NMOS \  
+         w=MOSFET_7_1_W_gm2_NMOS*1 multi=MOSFET_7_1_M_gm2_NMOS nf=1 sd=100n \  
+         ad=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1e-07))*MOSFET_7_1_W_gm2_NMOS \  
+         as=((1-int(1/2)*2)*(8.5e-08+((1-1)*1e-07)/2+0)+(1+1-int((1+1)/2)*2)*(8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0))*MOSFET_7_1_W_gm2_NMOS \  
+         pd=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_7_1_W_gm2_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1e-07)*2+1*MOSFET_7_1_W_gm2_NMOS) \  
+         ps=(1-int(1/2)*2)*((8.5e-08+((1-1)*1e-07)/2+0)*2+(1+1)*MOSFET_7_1_W_gm2_NMOS)+(1+1-int((1+1)/2)*2)*((8.5e-08+8.5e-08+(1/2-1)*1e-07+0+0)*2+(1+2)*MOSFET_7_1_W_gm2_NMOS) \  
+         spa=120.0n spa1=120.0n dfm_flag=0  
+ ends TwoStFixIRatio_SMCNR_Pin_2  
+ // End of subcircuit definition.  
+ // Library name: TSMC22ULL_Std_AMP_LIB  
+ // Cell name: TB_TRANTwoStFixIRatio_SMCNR_Pin_2  
+ // View name: schematic  
+ V0 (VDD 0) vsource dc=VDD type=dc  
+ C0 (SR_VOUT 0) capacitor c=CLOAD  
+ I1 (0 VDD SR_VOUT SR_VINP SR_VOUT) TwoStFixIRatio_SMCNR_Pin_2  
+ V1 (SR_VINP 0) vsource dc=0 type=pulse delay=1u edgetype=linear \  
+ val0=1.5 val1=2.5 period=1 rise=1p fall=1p width=5.83e-04 
+ simulatorOptions options psfversion="1.1.0" reltol=1e-3 vabstol=1e-6 \  
+ iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 \ 
+     rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \  
+     sensfile="../psf/sens.output" checklimitdest=psf   
+ tran tran stop=1.17e-03 errpreset=conservative write="spectre.ic" \ 
+     writefinal="spectre.fc" annotate=status maxiters=5   
+ finalTimeOP info what=oppoint where=rawfile  
+ modelParameter info what=models where=rawfile  
+ element info what=inst where=rawfile  
+ outputParameter info what=output where=rawfile  
+ designParamVals info what=parameters where=rawfile  
+ primitives info what=primitives where=rawfile  
+ subckts info what=subckts where=rawfile  
+ save SR_VOUT SR_VINP   
+ saveOptions options save=selected  
+ 

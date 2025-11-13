@@ -1,0 +1,173 @@
+// Generated for: spectre  
+ // Generated on: Mar 26 01:34:04 2025  
+ // Design library name: 2025_5_DCDC_TO  
+ // Design cell name: TB_TRAN_HSOTA_COMP_Pin_2_Pin_2  
+ // Design view name: schematic  
+ simulator lang=spectre  
+ global 0  
+ parameters RESISTOR_0=16.0k RESISTOR_2=35.0k MOSFET_0_1_L_LOAD_NMOS=0.71u \ 
+ MOSFET_0_1_M_LOAD_NMOS=15.0 MOSFET_0_1_W_LOAD_NMOS=0.64u \ 
+ MOSFET_10_1_L_gm1_PMOS=0.66u MOSFET_10_1_M_gm1_PMOS=20.0 \ 
+ MOSFET_10_1_W_gm1_PMOS=0.52u MOSFET_14_1_L_BIASCM_PMOS=0.34u \ 
+ MOSFET_14_1_M_BIASCM_PMOS=10.0 MOSFET_14_1_W_BIASCM_PMOS=0.98u \ 
+ MOSFET_2_1_L_gm2_PMOS=0.41u MOSFET_2_1_M_gm2_PMOS=3.0 \ 
+ MOSFET_2_1_W_gm2_PMOS=1.16u MOSFET_4_1_L_gm3_NMOS=0.62u \ 
+ MOSFET_4_1_M_gm3_NMOS=10.0 MOSFET_4_1_W_gm3_NMOS=0.91u \ 
+ MOSFET_6_1_L_BIASCM_PMOS=0.52u MOSFET_6_1_M_BIASCM_NMOS=13.0 \ 
+ MOSFET_6_1_M_BIASCM_PMOS=13.0 MOSFET_6_1_W_BIASCM_PMOS=1.11u \ 
+ CURRENT_0_BIAS=1.57u CLOAD=1p VCM=0.8 VDD=1.9 
+ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/spectre_22model/crn22ull_1d8_elk_v1d3_1p1_shrink0d855_embedded_usage.scs" section=ffMacro_MOS_MOSCAP 
+include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/spectre_22model/crn22ull_1d8_elk_v1d3_1p1_shrink0d855_embedded_usage.scs" section=pre_simu 
+// Library name: 2025_5_DCDC_TO  
+ // Cell name: HSOTA_COMP_Pin_2  
+ // View name: schematic  
+ subckt HSOTA_COMP_Pin_2 GNDA VDDA VINN VINP VOUT  
+     M0 (net14 net20 GNDA GNDA) nch_18_mac l=MOSFET_0_1_L_LOAD_NMOS \  
+         w=MOSFET_0_1_W_LOAD_NMOS*1 multi=MOSFET_0_1_M_LOAD_NMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_0_1_W_LOAD_NMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_0_1_W_LOAD_NMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_LOAD_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_0_1_W_LOAD_NMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_LOAD_NMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_0_1_W_LOAD_NMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M20 (VOUT net2 GNDA GNDA) nch_18_mac l=MOSFET_4_1_L_gm3_NMOS \  
+         w=MOSFET_4_1_W_gm3_NMOS*1 multi=MOSFET_4_1_M_gm3_NMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_4_1_W_gm3_NMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_4_1_W_gm3_NMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_4_1_W_gm3_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_4_1_W_gm3_NMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_4_1_W_gm3_NMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_4_1_W_gm3_NMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M4 (net11 net14 GNDA GNDA) nch_18_mac l=MOSFET_4_1_L_gm3_NMOS \  
+         w=MOSFET_4_1_W_gm3_NMOS*1 multi=MOSFET_4_1_M_gm3_NMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_4_1_W_gm3_NMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_4_1_W_gm3_NMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_4_1_W_gm3_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_4_1_W_gm3_NMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_4_1_W_gm3_NMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_4_1_W_gm3_NMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M1 (net2 net20 GNDA GNDA) nch_18_mac l=MOSFET_0_1_L_LOAD_NMOS \  
+         w=MOSFET_0_1_W_LOAD_NMOS*1 multi=MOSFET_0_1_M_LOAD_NMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_0_1_W_LOAD_NMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_0_1_W_LOAD_NMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_LOAD_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_0_1_W_LOAD_NMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_LOAD_NMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_0_1_W_LOAD_NMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     R1 (net14 net20) resistor r=RESISTOR_0  
+     R0 (net20 net2) resistor r=RESISTOR_0  
+     R2 (net21 GNDA) resistor r=RESISTOR_2  
+     R3 (GNDA net30) resistor r=RESISTOR_2  
+     M16 (VOUT net11 VDDA VDDA) pch_18_mac l=MOSFET_14_1_L_BIASCM_PMOS \  
+         w=MOSFET_14_1_W_BIASCM_PMOS*1 multi=MOSFET_14_1_M_BIASCM_PMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_14_1_W_BIASCM_PMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_14_1_W_BIASCM_PMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_14_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_14_1_W_BIASCM_PMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_14_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_14_1_W_BIASCM_PMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M14 (net11 net11 VDDA VDDA) pch_18_mac l=MOSFET_14_1_L_BIASCM_PMOS \  
+         w=MOSFET_14_1_W_BIASCM_PMOS*1 multi=MOSFET_14_1_M_BIASCM_PMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_14_1_W_BIASCM_PMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_14_1_W_BIASCM_PMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_14_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_14_1_W_BIASCM_PMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_14_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_14_1_W_BIASCM_PMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M12 (net32 net4 VDDA VDDA) pch_18_mac l=MOSFET_6_1_L_BIASCM_PMOS \  
+         w=MOSFET_6_1_W_BIASCM_PMOS*1 multi=6*MOSFET_6_1_M_BIASCM_NMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_6_1_W_BIASCM_PMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_6_1_W_BIASCM_PMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_6_1_W_BIASCM_PMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_6_1_W_BIASCM_PMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M3 (net2 net30 net32 net32) pch_18_mac l=MOSFET_2_1_L_gm2_PMOS \  
+         w=MOSFET_2_1_W_gm2_PMOS*1 multi=MOSFET_2_1_M_gm2_PMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_2_1_W_gm2_PMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_2_1_W_gm2_PMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_2_1_W_gm2_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_2_1_W_gm2_PMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_2_1_W_gm2_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_2_1_W_gm2_PMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M2 (net14 net21 net32 net32) pch_18_mac l=MOSFET_2_1_L_gm2_PMOS \  
+         w=MOSFET_2_1_W_gm2_PMOS*1 multi=MOSFET_2_1_M_gm2_PMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_2_1_W_gm2_PMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_2_1_W_gm2_PMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_2_1_W_gm2_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_2_1_W_gm2_PMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_2_1_W_gm2_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_2_1_W_gm2_PMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M9 (VDDA net4 VDDA VDDA) pch_18_mac l=150n w=320n multi=1 nf=1 sd=180n \  
+         ad=4.96e-14 as=4.96e-14 pd=950.0n ps=950.0n nrd=0 nrs=0 sa=155.00n \  
+         sb=155.00n sa1=155.00n sa2=155.00n sa3=155.00n sa4=155.00n \  
+         sb1=155.00n sb2=155.00n sb3=155.00n spa=180.0n spa1=180.0n \  
+         spa2=180.0n spa3=180.0n sap=172.362n sapb=242.67n spba=233.666n \  
+         spba1=239.844n spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 \  
+         spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60  
+     M8 (VDDA net4 VDDA VDDA) pch_18_mac l=150n w=320n multi=1 nf=1 sd=180n \  
+         ad=4.96e-14 as=4.96e-14 pd=950.0n ps=950.0n nrd=0 nrs=0 sa=155.00n \  
+         sb=155.00n sa1=155.00n sa2=155.00n sa3=155.00n sa4=155.00n \  
+         sb1=155.00n sb2=155.00n sb3=155.00n spa=180.0n spa1=180.0n \  
+         spa2=180.0n spa3=180.0n sap=172.362n sapb=242.67n spba=233.666n \  
+         spba1=239.844n spmt=1.11111e+15 spomt=0 spomt1=1.11111e+60 \  
+         spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60  
+     M7 (net31 net4 VDDA VDDA) pch_18_mac l=MOSFET_6_1_L_BIASCM_PMOS \  
+         w=MOSFET_6_1_W_BIASCM_PMOS*1 multi=6*MOSFET_6_1_M_BIASCM_NMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_6_1_W_BIASCM_PMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_6_1_W_BIASCM_PMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_6_1_W_BIASCM_PMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_6_1_W_BIASCM_PMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M6 (net4 net4 VDDA VDDA) pch_18_mac l=MOSFET_6_1_L_BIASCM_PMOS \  
+         w=MOSFET_6_1_W_BIASCM_PMOS*1 multi=MOSFET_6_1_M_BIASCM_PMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_6_1_W_BIASCM_PMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_6_1_W_BIASCM_PMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_6_1_W_BIASCM_PMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_6_1_W_BIASCM_PMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M11 (net30 VINN net31 net31) pch_18_mac l=MOSFET_10_1_L_gm1_PMOS \  
+         w=MOSFET_10_1_W_gm1_PMOS*1 multi=MOSFET_10_1_M_gm1_PMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_10_1_W_gm1_PMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_10_1_W_gm1_PMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_10_1_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_10_1_W_gm1_PMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_10_1_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_10_1_W_gm1_PMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     M10 (net21 VINP net31 net31) pch_18_mac l=MOSFET_10_1_L_gm1_PMOS \  
+         w=MOSFET_10_1_W_gm1_PMOS*1 multi=MOSFET_10_1_M_gm1_PMOS nf=1 \  
+         sd=180.0n \  
+         ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_10_1_W_gm1_PMOS \  
+         as=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*(1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0))*MOSFET_10_1_W_gm1_PMOS \  
+         pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_10_1_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_10_1_W_gm1_PMOS) \  
+         ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_10_1_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_10_1_W_gm1_PMOS) \  
+         nrd=0 nrs=0 spa=180.0n spa1=180.0n  
+     I0 (net4 GNDA) isource dc=CURRENT_0_BIAS type=dc  
+ ends HSOTA_COMP_Pin_2  
+ // End of subcircuit definition.  
+ // Library name: 2025_5_DCDC_TO  
+ // Cell name: TB_TRAN_HSOTA_COMP_Pin_2_Pin_2  
+ // View name: schematic  
+ V0 (VDD 0) vsource dc=VDD type=dc  
+ C0 (SR_VOUT 0) capacitor c=CLOAD  
+ I20 (0 VDD SR_VOUT SR_VINP SR_VOUT) HSOTA_COMP_Pin_2  
+ V1 (SR_VINP 0) vsource dc=0 type=pulse delay=1u edgetype=linear val0=0.7 \ 
+ val1=1 period=1 rise=1p fall=1p width=8.09e-05 
+ simulatorOptions options psfversion="1.4.0" reltol=1e-3 vabstol=1e-6 \  
+ iabstol=1e-12 temp=85 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 \ 
+     rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \  
+     sensfile="../psf/sens.output" checklimitdest=psf   
+ tran tran stop=1.63e-04 errpreset=conservative write="spectre.ic" \ 
+     writefinal="spectre.fc" annotate=status maxiters=5   
+ finalTimeOP info what=oppoint where=rawfile  
+ modelParameter info what=models where=rawfile  
+ element info what=inst where=rawfile  
+ outputParameter info what=output where=rawfile  
+ designParamVals info what=parameters where=rawfile  
+ primitives info what=primitives where=rawfile  
+ subckts info what=subckts where=rawfile  
+ save SR_VOUT SR_VINP   
+ saveOptions options save=selected  
+ 
