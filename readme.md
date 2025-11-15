@@ -4,7 +4,7 @@
   <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="500"/>
 </p>
 
-** An open-source MATLAB-based tool designed to assist analog IC design engineers in rapidly selecting and designing amplifiers. ** It has a proven track record with successful tape-outs.
+**An open-source MATLAB-based tool designed to assist analog IC design engineers in rapidly selecting and designing amplifiers.** It has a proven track record with successful tape-outs.
 
 ---
 
