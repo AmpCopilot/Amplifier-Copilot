@@ -1,18 +1,26 @@
 # Amplifier-Copilot
 
 <p align="center">
-  <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="800"/>
+  <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="500"/>
 </p>
 
 An open-source MATLAB-based tool designed to assist analog IC design engineers in rapidly selecting and designing amplifiers. It has a proven track record with successful tape-outs.
 
 ---
 
+## Features
+
+- ✨ **Free & Open-Source**: Built with MATLAB, completely open-source and free to use.
+- 🔬 Supports **T22 (0.9V & 1.8V) and T180 (1.8V & 5V)** technologies.
+- 📚 **22** distinct amplifier topologies, over **2800** netlists with varying device sizes. Covers a vast design space, from **20-170 dB gain and 100 kHz to 10 GHz bandwidth**.
+- 🎯 Evaluates designs across **5 PVT** (Process, Voltage, Temperature) corners. Considers **13** key performance metrics.
+
+
 ## Table of Contents
 
 - [Amplifier-Copilot](#amplifier-copilot)
-  - [Table of Contents](#table-of-contents)
   - [Features](#features)
+  - [Table of Contents](#table-of-contents)
   - [Quick Start](#quick-start)
     - [Installation](#installation)
     - [Usage](#usage)
@@ -25,12 +33,6 @@ An open-source MATLAB-based tool designed to assist analog IC design engineers i
   - [License](#license)
   - [Contact](#contact)
 
-## Features
-
-- ✨ **Free & Open-Source**: Built with MATLAB, completely open-source and free to use.
-- 🔬 Supports **T22 (0.9V & 1.8V) and T180 (1.8V & 5V)** technologies.
-- 📚 **22** distinct amplifier topologies, over **2800** netlists with varying device sizes. Covers a vast design space, from **20-170 dB gain and 100 kHz to 10 GHz bandwidth**.
-- 🎯 Evaluates designs across **5 PVT** (Process, Voltage, Temperature) corners. Considers **13** key performance metrics.
 
 ## Quick Start
 
@@ -54,7 +56,9 @@ You can either clone this repository or download the source code as a ZIP file.
 - Unzip the downloaded file and open `./SRC/main.m` in MATLAB.
 - Run the script and check the MATLAB Command Window for any output messages.
 
-![Unzip and Run](Pic_for_readme/Startup_2.png)
+<p align="center">
+  <img src="Pic_for_readme/Startup_2.png" alt="Unzip and Run" width="400"/>
+</p>
 
 **Step 2: Input Your Requirements**
 
@@ -63,16 +67,18 @@ You can either clone this repository or download the source code as a ZIP file.
 3.  **Load Capacitance**: Choose the load capacitance (CL).
 4.  **Select a Design**: Click the "Search" (or equivalent) button, then select a point on the resulting scatter plot that meets your needs.
 
-![Input Requirements](Pic_for_readme/Startup_3.png)
+<p align="center">
+  <img src="Pic_for_readme/Startup_3.png" alt="Input Requirements" width="400"/>
+</p>
 
 **Step 3: Get the Results**
 
 After selecting a point, you can:
 1.  View the amplifier's schematic and simulation results.
 2.  Export the corresponding netlist for further use.
-
-![View Results](Pic_for_readme/Startup_4.png)
-
+<p align="center">
+  <img src="Pic_for_readme/Startup_4.png" alt="View Results" width="400"/>
+</p>
 ## Compatibility
 
 We have confirmed that Amplifier-Copilot runs on the following environments:
@@ -93,13 +99,17 @@ The Amplifier-Copilot team welcomes developers to contribute, build upon this pr
 
 Here is an overview of the source code organization:
 
-![Source Code Structure](Pic_for_readme/SRC_guide.png)
+<p align="center">
+  <img src="Pic_for_readme/SRC_guide.png" alt="Source Code Structure" width="400"/>
+</p>
 
 ### Database Structure
 
 The database is structured as follows to store topology and performance data:
 
-![Database Structure](Pic_for_readme/DB_guide.png)
+<p align="center">
+  <img src="Pic_for_readme/DB_guide.png" alt="Database  Structure" width="400"/>
+</p>
 
 ### Customization
 
