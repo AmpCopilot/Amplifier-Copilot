@@ -79,6 +79,7 @@ After selecting a point, you can:
 <p align="center">
   <img src="Pic_for_readme/Startup_4.png" alt="View Results" width="400"/>
 </p>
+
 ## Compatibility
 
 We have confirmed that Amplifier-Copilot runs on the following environments:
