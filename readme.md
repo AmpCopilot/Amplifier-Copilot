@@ -1,7 +1,7 @@
 # Amplifier-Copilot
 
 <p align="center">
-  <a href="https://github.com/AmpCopilot/Amplifier-Copilot/blob/main/LICENSE">
+  <a href="https://github.com/AmpCopilot/Amplifier-Copilot/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/AmpCopilot/Amplifier-Copilot?style=flat-square" alt="License">
   </a>
   <a href="https://github.com/AmpCopilot/Amplifier-Copilot/issues">
@@ -40,14 +40,9 @@ An open-source MATLAB-based tool designed to assist analog IC design engineers i
 ## Features
 
 - ✨ **Free & Open-Source**: Built with MATLAB, completely open-source and free to use.
-- 🔬 **Process Support**: Supports T22 (0.9V & 1.8V) and T180 (1.8V & 5V) technologies.
-- 📚 **Extensive Database**:
-  - 22 distinct amplifier topologies.
-  - Over 2800 netlists with varying device sizes.
-- 📈 **Comprehensive Analysis**:
-  - Evaluates designs across 5 PVT (Process, Voltage, Temperature) corners.
-  - Considers 13 key performance metrics.
-- 🎯 **Wide Performance Range**: Covers a vast performance spectrum, from 20-170 dB gain and 100 kHz to 10 GHz bandwidth.
+- 🔬 Supports **T22 (0.9V & 1.8V) and T180 (1.8V & 5V)** technologies.
+- 📚 **22** distinct amplifier topologies, over **2800** netlists with varying device sizes. Covers a vast design space, from **20-170 dB gain and 100 kHz to 10 GHz bandwidth**.
+- 🎯 Evaluates designs across **5 PVT** (Process, Voltage, Temperature) corners. Considers **13** key performance metrics.
 
 ## Quick Start
 
