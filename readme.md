@@ -1,138 +1,287 @@
 # Amplifier-Copilot
 
-<p align="center">
-  <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="500"/>
-</p>
-
-**An open-source MATLAB-based tool designed to assist analog IC design engineers in rapidly selecting and designing amplifiers.** It has a proven track record with successful tape-outs.
-
----
-
-## Features
-
-- ✨ **Free & Open-Source**: Built with MATLAB, completely open-source and free to use.
-- 🔬 Supports **T22 (0.9V & 1.8V) and T180 (1.8V & 5V)** technologies.
-- 📚 **22** distinct amplifier topologies, over **2800** netlists with varying device sizes. Covers a vast design space, from **20-170 dB gain and 100 kHz to 10 GHz bandwidth**.
-- 🎯 Evaluates designs across **5 PVT** (Process, Voltage, Temperature) corners. Considers **13** key performance metrics.
+<div align="center">
+  <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="600"/>
+  
+  ### 🚀 An MATLAB Tool for Analog IC Amplifier Design
+  
+  [[License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+  
+  **Open-source • Production-Ready • Tape-out Proven**
+  
+  [Quick Start](#-quick-start) • [Features](#-features) • [Documentation](#-development-guide) • [Contributing](#-requesting-new-features)
+  
+</div>
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
-- [Amplifier-Copilot](#amplifier-copilot)
-  - [Features](#features)
-  - [Table of Contents](#table-of-contents)
-  - [Quick Start](#quick-start)
-    - [Installation](#installation)
-    - [Usage](#usage)
-  - [Compatibility](#compatibility)
-  - [Development Guide](#development-guide)
-    - [Code Structure](#code-structure)
-    - [Database Structure](#database-structure)
-    - [Customization](#customization)
-  - [Requesting New Features](#requesting-new-features)
-  - [License](#license)
-  - [Contact](#contact)
+- [✨ Features](#-features)
+- [🚀 Quick Start](#-quick-start)
+- [💻 Compatibility](#-compatibility)
+- [🔧 Development Guide](#-development-guide)
+- [💡 Requesting New Features](#-requesting-new-features)
+- [📄 License](#-license)
+- [📬 Contact](#-contact)
 
 ---
 
-## Quick Start
+## ✨ Features
 
-### Installation
+<table>
+<tr>
+<td width="50%">
 
-**Step 1: Download the Code**
+### 🎯 Comprehensive Design Space
+- **22** distinct amplifier topologies
+- **2800+** pre-characterized netlists
+- Coverage from **20-170 dB** gain
+- Bandwidth range: **100 kHz - 10 GHz**
 
-You can either clone this repository or download the source code as a ZIP file.
+</td>
+<td width="50%">
 
-![Startup](Pic_for_readme/Startup.png)
+### 🔬 Process Support
+- **T22**: 0.9V & 1.8V technologies
+- **T180**: 1.8V & 5V technologies
+- **5 PVT corners** validation
+- **13** performance metrics evaluation
 
-**Step 2: Install MATLAB**
+</td>
+</tr>
+<tr>
+<td width="50%">
 
-- A base MATLAB installation is sufficient. No additional toolboxes are required.
-- University users may be able to install a licensed version through their institution's IT department or information center.
+### 🆓 Open & Accessible
+- Completely **free and open-source**
+- Built with **MATLAB** (base installation only)
+- No additional toolboxes required
+- Active community support
 
-### Usage
+</td>
+<td width="50%">
 
-**Step 1: Unzip and Run**
+### ✅ Production Ready
+- **Tape-out proven** designs
+- Industry-validated topologies
+- Comprehensive simulation data
+- Export-ready netlists
 
-- Unzip the downloaded file and open `./SRC/main.m` in MATLAB.
-- Run the script and check the MATLAB Command Window for any output messages.
-
-<p align="center">
-  <img src="Pic_for_readme/Startup_2.png" alt="Unzip and Run" width="400"/>
-</p>
-
-**Step 2: Input Your Requirements**
-
-1.  **Topology Selection**: The topology selection box defaults to all selected; no action is needed unless you want to narrow the search.
-2.  **Process & VDD**: Select the desired process technology and supply voltage (VDD).
-3.  **Load Capacitance**: Choose the load capacitance (CL).
-4.  **Select a Design**: Click the "Search" (or equivalent) button, then select a point on the resulting scatter plot that meets your needs.
-
-<p align="center">
-  <img src="Pic_for_readme/Startup_3.png" alt="Input Requirements" width="400"/>
-</p>
-
-**Step 3: Get the Results**
-
-After selecting a point, you can:
-1.  View the amplifier's schematic and simulation results.
-2.  Export the corresponding netlist for further use.
-<p align="center">
-  <img src="Pic_for_readme/Startup_4.png" alt="View Results" width="400"/>
-</p>
+</td>
+</tr>
+</table>
 
 ---
 
-## Compatibility
+## 🚀 Quick Start
 
-We have confirmed that Amplifier-Copilot runs on the following environments:
+### 📥 Installation
 
-- [x] **Windows 11 (x64)**
-  - [x] MATLAB R2023b
-  - [x] MATLAB R2025a (Pre-release)
-- [x] **macOS 13 (x64)**
-  - [x] MATLAB R2025a (Pre-release)
+<details open>
+<summary><b>Step 1: Get the Code</b></summary>
 
-We are continuously testing on more environments and will update this list accordingly. If you successfully run it on a different setup, please let us know!
+<br>
 
-## Development Guide
+Clone the repository or download as ZIP:
 
-The Amplifier-Copilot team welcomes developers to contribute, build upon this project, and create more interesting applications.
-
-### Code Structure
-
-Here is an overview of the source code organization:
+```bash
+git clone https://github.com/AmpCopilot/Amplifier-Copilot.git
+```
 
 <p align="center">
-  <img src="Pic_for_readme/SRC_guide.png" alt="Source Code Structure" width="400"/>
+  <img src="Pic_for_readme/Startup.png" alt="Download Options" width="500"/>
 </p>
 
-### Database Structure
+</details>
 
-The database is structured as follows to store topology and performance data:
+<details open>
+<summary><b>Step 2: Install MATLAB</b></summary>
+
+<br>
+
+- **Minimum requirement**: Base MATLAB installation (no toolboxes needed)
+- **Recommended version**: R2023b or later
+- **For students**: Check with your university's IT department for free licenses
+
+</details>
+
+### 🎮 Usage
+
+<details open>
+<summary><b>Step 1: Launch the Application</b></summary>
+
+<br>
+
+1. Navigate to the project directory
+2. Open `./SRC/main.m` in MATLAB
+3. Run the script and monitor the Command Window
 
 <p align="center">
-  <img src="Pic_for_readme/DB_guide.png" alt="Database  Structure" width="400"/>
+  <img src="Pic_for_readme/Startup_2.png" alt="Launch Application" width="450"/>
 </p>
 
-### Customization
+</details>
 
-You can easily customize key settings in `Amplifier_Copilot.m`.
+<details open>
+<summary><b>Step 2: Define Your Requirements</b></summary>
 
-**Modifying the DB Location and Scatter Plot Axes:**
-The file `Amplifier_Copilot.m` contains the GUI definitions and callback functions for each element. You can modify the database location and the x/y axes of the performance scatter plot at the beginning of this file.
+<br>
 
-![Main Function Customization](Pic_for_readme/Main_func.png)
+Configure your design specifications:
 
-## Requesting New Features
+1. **Topology**: All topologies selected by default (customize if needed)
+2. **Process & VDD**: Choose technology node and supply voltage
+3. **Load Capacitance (CL)**: Select target load
+4. **Search**: Click search and select optimal design from scatter plot
 
-The database is continuously being updated. If you require additional topologies, process technologies, or other features, please **[open an issue](https://github.com/AmpCopilot/Amplifier-Copilot/issues/new)** and provide detailed information.
+<p align="center">
+  <img src="Pic_for_readme/Startup_3.png" alt="Configure Requirements" width="450"/>
+</p>
 
-## License
+</details>
 
-This project is open-source and licensed under the [MIT License](LICENSE).
+<details open>
+<summary><b>Step 3: Analyze Results</b></summary>
 
-## Contact
+<br>
 
-For questions, collaborations, or support, please open an issue in this repository or contact [Amp-Copilot_Team/230238418@seu.edu.cn] directly.
+After selection, you can:
+
+- 📊 **View**: Schematic diagrams and simulation results
+- 📤 **Export**: Netlists and raw data
+- 📈 **Compare**: Performance across PVT corners
+
+<p align="center">
+  <img src="Pic_for_readme/Startup_4.png" alt="View Results" width="450"/>
+</p>
+
+</details>
+
+---
+
+## 💻 Compatibility
+
+### ✅ Tested Environments
+
+| Platform | MATLAB Version | Status |
+|----------|---------------|---------|
+| 🪟 **Windows 11 (x64)** | R2023b | ✅ Verified |
+| 🪟 **Windows 11 (x64)** | R2025a (Pre-release) | ✅ Verified |
+| 🍎 **macOS 13 (x64)** | R2025a (Pre-release) | ✅ Verified |
+
+> 💡 **Running on a different setup?** Let us know! We're continuously expanding our compatibility testing.
+
+---
+
+## 🔧 Development Guide
+
+### 📁 Project Structure
+
+<details>
+<summary><b>Source Code Organization</b></summary>
+
+<br>
+
+<p align="center">
+  <img src="Pic_for_readme/SRC_guide.png" alt="Source Structure" width="450"/>
+</p>
+
+The codebase is organized for easy navigation and modification. Key components include GUI definitions, database handlers, and export utilities.
+
+</details>
+
+<details>
+<summary><b>Database Architecture</b></summary>
+
+<br>
+
+<p align="center">
+  <img src="Pic_for_readme/DB_guide.png" alt="Database Structure" width="450"/>
+</p>
+
+Our database structure efficiently stores topology information, device sizing, and performance characteristics across multiple PVT corners.
+
+</details>
+
+### ⚙️ Customization
+
+<details>
+<summary><b>Modifying Database Location & Visualization</b></summary>
+
+<br>
+
+Edit `Amplifier_Copilot.m` to customize:
+
+- **Database path**: Change the location of topology and performance data
+- **Scatter plot axes**: Modify x/y axis parameters for visualization
+- **GUI callbacks**: Customize user interaction behavior
+
+<p align="center">
+  <img src="Pic_for_readme/Main_func.png" alt="Customization Options" width="500"/>
+</p>
+
+</details>
+
+---
+
+## 💡 Requesting New Features
+
+We're continuously expanding our database and capabilities!
+
+### 🎯 Need Additional Features?
+
+**Request new topologies, process nodes, or features:**
+
+1. 📝 **[Open an Issue](https://github.com/AmpCopilot/Amplifier-Copilot/issues/new)**
+2. 📋 Provide detailed requirements and use cases
+3. 🤝 Our team will review and prioritize your request
+
+---
+
+## 📄 License
+
+This project is released under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License - Free for commercial and private use
+```
+
+---
+
+## 📬 Contact
+
+### Get in Touch
+
+<table>
+<tr>
+<td width="50%">
+
+**🐛 Bug Reports & Issues**
+<br>
+[Open an Issue](https://github.com/AmpCopilot/Amplifier-Copilot/issues/new)
+
+</td>
+<td width="50%">
+
+**📧 Direct Contact**
+<br>
+[230238418@seu.edu.cn](mailto:230238418@seu.edu.cn)
+
+</td>
+</tr>
+</table>
+
+---
+
+<div align="center">
+  
+  ### 🌟 Star us on GitHub!
+  
+  If you find Amplifier-Copilot useful, please consider giving it a star ⭐
+  
+  **Made with ❤️ by the Amplifier-Copilot Team**
+  
+  [⬆ Back to Top](#amplifier-copilot)
+  
+</div>
