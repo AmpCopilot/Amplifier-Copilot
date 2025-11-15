@@ -1,18 +1,6 @@
 # Amplifier-Copilot
 
 <p align="center">
-  <a href="https://github.com/AmpCopilot/Amplifier-Copilot/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/AmpCopilot/Amplifier-Copilot?style=flat-square" alt="License">
-  </a>
-  <a href="https://github.com/AmpCopilot/Amplifier-Copilot/issues">
-    <img src="https://img.shields.io/github/issues/AmpCopilot/Amplifier-Copilot?style=flat-square" alt="GitHub issues">
-  </a>
-  <a href="https://github.com/AmpCopilot/Amplifier-Copilot/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22">
-    <img src="https://img.shields.io/github/issues-search?label=help%20wanted&query=repo%3A%5BAmpCopilot%5D%2F%5BAmplifier-Copilot%5D%20is%3Aopen%20label%3A%22help%20wanted%22&style=flat-square" alt="Help Wanted">
-  </a>
-</p>
-
-<p align="center">
   <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="800"/>
 </p>
 
