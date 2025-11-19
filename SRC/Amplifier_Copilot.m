@@ -43,7 +43,7 @@ function Amplifier_Copilot()
     figW = 1400;  figH = 1000;
     left = round((scr(3)-figW)/2);  bot = round((scr(4)-figH)/2);
     
-    mainFig = figure('Name','Amplifier-Copilot v1.0 (Rednote,Github: Amp-Copilot)','Units','pixels',...
+    mainFig = figure('Name','Amplifier-Copilot v1.0 (Github: Amplifier-Copilot)','Units','pixels',...
         'OuterPosition',[left bot figW figH],'Resize','off');
     
     panelL = uipanel(mainFig,'Units','normalized','Position',[0   0 0.10 1]);
