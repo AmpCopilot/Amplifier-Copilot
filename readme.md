@@ -1,7 +1,7 @@
 # Amplifier-Copilot
 
 <div align="center">
-  <img src="Pic_for_readme/logo.png" alt="Amplifier-Copilot Logo" width="100"/>
+  <img src="Pic_for_readme/LOGO.png" alt="Amplifier-Copilot Logo" width="100"/>
   
   # Amplifier-Copilot
   
