@@ -282,6 +282,62 @@ MIT License - Free for commercial and private use
 
 ---
 
+## 📚 Related Publications
+
+We sincerely invite developers and researchers interested in the methodologies behind Amplifier-Copilot to explore our published works. These studies represent the foundational research that powers the techniques used in this tool:
+
+
+### 🔬 Core Technologies
+
+#### Transistor Modeling & Transfer Learning
+**[1] Analog Circuit Transfer Method Across Technology Nodes via Transistor Behavior**  
+*H. Zhi, J. Li, Y. Li, and W. Shan*  
+ASP-DAC 2025 | [Paper](https://doi.org/10.1145/3658617.3697702)
+
+> Enables transistor-level modeling for cross-node optimization, allowing efficient design transfer across different technology nodes. Poor written and hard to understand, a more clear journal version is up-coming. 
+
+#### Benchmark & Testing Framework
+**[2] AnalogGym: An Open and Practical Testing Suite for Analog Circuit Synthesis**  
+*J. Li et al.*  
+ICCAD 2024 (Invited) | [Paper](https://doi.org/10.1145/3676536.3697117) | [GitHub](https://github.com/CODA-Team/AnalogGym)
+
+> Open-source benchmark suite featuring 30 circuit topologies with Ngspice and SkyWater PDK support.
+
+#### Behavior-Centric Optimization
+**[3] Decoupling Analog Circuit Representation from Technology for Behavior-Centric Optimization**  
+*J. Li, H. Zhi, J. Xiao, K. Zhu, and Y. Li*  
+DAC 2025 | [Paper](https://doi.org/10.1109/DAC63849.2025.11133189)
+
+> Introduces symbolic optimization methods based on transistor behavior, decoupling circuit design from specific technology nodes.
+
+---
+
+### 🎯 Advanced Analysis & Optimization
+
+#### Multi-Stage Amplifier Analysis
+**[4] Closed-Loop Pole Analysis via Output Impedance in Miller-Compensated Amplifiers**  
+*H. Zhi et al.*  
+IEEE TCAS-II 2025 | [Paper](https://doi.org/10.1109/TCSII.2025.3618605)
+
+> AI-discovered analytical and intuitive methods for multi-stage amplifier pole analysis.
+
+#### PVT-Robust Design
+**[5] Knowledge Transfer Framework for PVT Robustness in Analog Integrated Circuits**  
+*J. Li et al.*  
+IEEE TCAS-I 2023 | [Paper](https://doi.org/10.1109/TCSI.2023.3340683)
+
+> Improves sizing efficiency under multiple PVT (Process-Voltage-Temperature) corners.
+
+#### Multi-Objective Optimization
+**[6] Balancing Objective Optimization and Constraint Satisfaction for Robust Analog Circuit Optimization**  
+*J. Li, H. Zhi, J. Xiao, Y. Zeng, W. Shan, and Y. Li*  
+ASP-DAC 2025 | [Paper](https://doi.org/10.1145/3658617.3697701)
+
+> Enhances sizing efficiency for multi-performance metrics with complex constraints.
+
+
+---
+
 <div align="center">
   
   ### 🌟 Star us on GitHub!
