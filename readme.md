@@ -1,15 +1,23 @@
 # Amplifier-Copilot
 
 <div align="center">
-  <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="600"/>
+  <img src="Pic_for_readme/logo.png" alt="Amplifier-Copilot Logo" width="100"/>
+  
+  # Amplifier-Copilot
   
   ### 🚀 An MATLAB Tool for Analog IC Amplifier Design
   
-  [[License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+  [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b+-orange.svg)](https://www.mathworks.com/products/matlab.html)
+  [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey.svg)]()
   
   **Open-source • Production-Ready • Tape-out Proven**
   
   [Quick Start](#-quick-start) • [Features](#-features) • [Documentation](#-development-guide) • [Contributing](#-requesting-new-features)
+  
+  <br>
+  
+  <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="600"/>
   
 </div>
 
@@ -178,7 +186,7 @@ After selection, you can:
 
 ### 📁 Project Structure
 
-<details>
+<details open>
 <summary><b>Source Code Organization</b></summary>
 
 <br>
@@ -191,7 +199,7 @@ The codebase is organized for easy navigation and modification. Key components i
 
 </details>
 
-<details>
+<details open>
 <summary><b>Database Architecture</b></summary>
 
 <br>
@@ -206,7 +214,7 @@ Our database structure efficiently stores topology information, device sizing, a
 
 ### ⚙️ Customization
 
-<details>
+<details open>
 <summary><b>Modifying Database Location & Visualization</b></summary>
 
 <br>
