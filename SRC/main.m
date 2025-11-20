@@ -1,6 +1,5 @@
 % Amplifier_Copilot v1.0 
-% Github Repo: Amp_Copilot
-% Haochang, 2025-07
+% Github Repo: https://github.com/AmpCopilot/Amplifier-Copilot
 
 % Go
 Amplifier_Copilot();

@@ -1,9 +1,8 @@
 # Amplifier-Copilot
 
 <div align="center">
-  <img src="Pic_for_readme/LOGO.png" alt="Amplifier-Copilot Logo" width="100"/>
+  <img src="Pic_for_readme/LOGO.png" alt="Amplifier-Copilot Logo" width=700"/>
   
-  # Amplifier-Copilot
   
   ### 🚀 An MATLAB Tool for Analog IC Amplifier Design
   
@@ -32,7 +31,7 @@
 - [💡 Requesting New Features](#-requesting-new-features)
 - [📄 License](#-license)
 - [📬 Contact](#-contact)
-
+- [📚 Related Publications](#-related-publications)
 ---
 
 ## ✨ Features
@@ -84,6 +83,11 @@
 
 ## 🚀 Quick Start
 
+We provide both video and text-based user guides to help you get started quickly:
+
+**🎬 Video Tutorial:** [`Pic_for_readme/Copilot_Video_UG.mp4`](Pic_for_readme/Copilot_Video_UG.mp4)
+
+**📖 Text Guide:** See detailed step-by-step instructions below
 ### 📥 Installation
 
 <details open>
@@ -178,6 +182,8 @@ After selection, you can:
 | 🪟 **Windows 11 (x64)** | R2025a (Pre-release) | ✅ Verified |
 | 🍎 **macOS 13 (x64)** | R2025a (Pre-release) | ✅ Verified |
 
+**If text is obscured or buttons appear outside the screen, drag the window edges to resize the UI.**
+
 > 💡 **Running on a different setup?** Let us know! We're continuously expanding our compatibility testing.
 
 ---
@@ -192,7 +198,7 @@ After selection, you can:
 <br>
 
 <p align="center">
-  <img src="Pic_for_readme/SRC_guide.png" alt="Source Structure" width="450"/>
+  <img src="Pic_for_readme/SRC_guide.png" alt="Source Structure" width="350"/>
 </p>
 
 The codebase is organized for easy navigation and modification. Key components include GUI definitions, database handlers, and export utilities.
@@ -245,6 +251,34 @@ We're continuously expanding our database and capabilities!
 2. 📋 Provide detailed requirements and use cases
 3. 🤝 Our team will review and prioritize your request
 
+### 🔬 Regarding Process Node Support
+
+We understand that many users have requested support for additional process nodes. We're addressing this through two approaches:
+
+**Short-term (Community-Driven):**
+- We will prioritize and add the most requested process nodes to our database based on community feedback
+- Submit your process node requests via [GitHub Issues](https://github.com/AmpCopilot/Amplifier-Copilot/issues/new)
+
+**Long-term (Technology Transfer):**
+- Our team is developing a transistor behavior-based transfer method that will enable users to compute device sizing for new process nodes directly on their local machines
+- This technology leverages transistor data from existing and target process nodes
+- While promising results have been achieved in small-scale experiments, further development is needed
+- This will ultimately become our primary approach for future design porting
+
+---
+
+### 📌 Using Existing Process Nodes as References
+
+While we work on expanding our database, you can reference existing process nodes for similar technologies:
+
+| **Your Target Process** | **Recommended Reference** | **Notes** |
+|------------------------|---------------------------|-----------|
+| **22nm, 28nm, 40nm** | 22nm / 0.9V| Planar 22nm and 28nm processes show negligible differences |
+| **65nm, 90nm** | 22nm / 1.8V | Similar voltage domain characteristics |
+| **130nm, 180nm** | 180nm / 1.8V | Comparable device behavior |
+| **Mature nodes (>180nm)** | 180nm / 5V | Suitable for legacy process technologies |
+
+**Note:** These references provide reasonable starting points for design exploration. For production designs, we recommend validating with your target process specifications.
 ---
 
 ## 📄 License
