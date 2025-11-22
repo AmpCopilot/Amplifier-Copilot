@@ -190,38 +190,51 @@ After selection, you can:
 
 ## 🔧 Development Guide
 
-### 📁 Project Structure
 
 <details open>
-<summary><b>Source Code Organization</b></summary>
+<summary><b>🗂️Source Code Organization</b></summary>
 
 <br>
 
-<p align="center">
-  <img src="Pic_for_readme/SRC_guide.png" alt="Source Structure" width="350"/>
-</p>
-
-The codebase is organized for easy navigation and modification. Key components include GUI definitions, database handlers, and export utilities.
+| **File** | **Function** | **Description** |
+|---------|-------------|-----------------|
+| **`main.m`** | Main function | Entry point - launches the GUI |
+| **`Amplifier_Copilot.m`** | Graphic user interface | Main GUI implementation |
+| **`Get_Perf_Table.m`** | Database query | Retrieves performance table from database |
+| **`Get_Size_TBM_Figure.m`** | Database query | Retrieves sizing table from database |
+| **`Plot_Perf_Table.m`** | Visualization | Plots performance scatter diagrams |
+| **`range.m`** | Utility function | Helper function for data processing |
+| **`Show_Schematic_With_Values.m`** | Schematic display | Shows interactive schematic with component values |
+| **`Startup_UG_1.png`** | Startup guide (Page 1) | First page of quick start guide |
+| **`Startup_UG_2.png`** | Startup guide (Page 2) | Second page of quick start guide |
 
 </details>
 
+---
+
 <details open>
-<summary><b>Database Architecture</b></summary>
+<summary><b>📊Database Architecture</b></summary>
 
 <br>
 
-<p align="center">
-  <img src="Pic_for_readme/DB_guide.png" alt="Database Structure" width="450"/>
-</p>
+| **Folder/File** | **Description** | **Contents** |
+|----------------|-----------------|--------------|
+| **`[Topology_Name]`** | Root folder for each topology | Contains all configurations for this topology |
+| **`[Topo]-[Tech]-[VDD]-[VCM]-[CL]`** | Configuration-specific folder | Format: `Tech_VDD_VCM_CL` <br> e.g., `180-1.8-0.9-800` |
+| **`Netlist_and_Figure/`** | Circuit files | SPICE netlists and performance plots |
+| **`Perf_and_Size_Table/`** | Performance data | Design space exploration results |
+| **`all_combined_data.csv`** | Combined database | Performance metrics + device sizing table |
+| **`GUI_data/`** | GUI resources | Schematic and component information |
+| **`[Topology_Name].png`** | Schematic diagram | Circuit topology visualization |
+| **`Label_data.csv`** | Component locations | Coordinates for interactive schematic display |
 
 Our database structure efficiently stores topology information, device sizing, and performance characteristics across multiple PVT corners.
 
 </details>
 
-### ⚙️ Customization
-
+---
 <details open>
-<summary><b>Modifying Database Location & Visualization</b></summary>
+<summary><b>⚙️Modifying Database Location & Visualization</b></summary>
 
 <br>
 
@@ -277,6 +290,8 @@ While we work on expanding our database, you can reference existing process node
 | **65nm, 90nm** | 22nm / 1.8V | Similar voltage domain characteristics |
 | **130nm, 180nm** | 180nm / 1.8V | Comparable device behavior |
 | **Mature nodes (>180nm)** | 180nm / 5V | Suitable for legacy process technologies |
+
+TSMC 65nm will be update soon, then is TSMC 40nm.
 
 **Note:** These references provide reasonable starting points for design exploration. For production designs, we recommend validating with your target process specifications.
 ---
