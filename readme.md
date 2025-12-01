@@ -188,6 +188,50 @@ After selection, you can:
 
 ---
 
+### 🔬 Process Node & Device Library Mapping
+
+Our database uses the following device models for each process/voltage configuration:
+
+| **Process Node** | **Supply Voltage (VDD)** | **NMOS Model** | **PMOS Model** | **Status** |
+|------------------|-------------------------|----------------|----------------|------------|
+| **22nm** | 0.9V | `nch_ulvt_mac` | `pch_ulvt_mac` | ✅ Available |
+| **22nm** | 1.8V | `nch_18_mac` | `pch_18_mac` | ✅ Available |
+| **180nm** | 1.8V | `nch_mac` | `pch_mac` | ✅ Available |
+| **180nm** | 5V | `nch5_lvt_gb` | `pch5_lvt_mac` | ✅ Available |
+| **65nm** | 1.2V | `nch_mac` | `pch_mac` | 🔄 Coming Soon |
+| **65nm** | 3.3V | `nch_33_mac` | `pch_33_mac` | 🔄 Coming Soon |
+| **40nm** | 0.9V | `nch_mac` | `pch_mac` | 🔄 Coming Soon |
+
+---
+
+### 📄  Simulation
+
+**Device models and testbench details** can be viewed by exporting the netlist from our tool.
+The exported netlists are **Spectre-compatible** and can be used directly for circuit simulation after updating the library paths.
+
+**Example Spectre simulation command:**
+```bash
+spectre -64 /input/TB0_ff_3.4_85_1.6.scs \
++escchars \
+=log /output/spectre.out \
+-format psfascii \
+-raw /output/out_file0_ff_3.4_85_1.6 \
++aps \
++lqtimeout 900 \
+-maxw 5 \
+-maxn 5 \
+-env ade
+```
+
+**Workflow:**
+1. Export netlist from Amplifier-Copilot
+2. Modify library file paths to match your PDK installation
+3. Run Spectre simulation with the command above
+4. Analyze results in your preferred waveform viewer
+
+
+---
+
 ## 🔧 Development Guide
 
 
@@ -249,6 +293,58 @@ Edit `Amplifier_Copilot.m` to customize:
 </p>
 
 </details>
+
+<details open>
+<summary><b>🔬 Testbench Design & Performance Extraction</b></summary>
+
+<br>
+
+Amplifier Copilot exports a **multi-circuit testbench netlist** that characterizes amplifier performance through three parallel measurement setups.
+
+### Overall Architecture
+
+<p align="center">
+<img src="Pic_for_readme/TB_Overview.png" alt="TB Overview" width="650"/>
+</p>
+
+The testbench instantiates three amplifier copies, each configured for a specific measurement. Simulations are controlled via the ADE setup shown below:
+
+<p align="center">
+<img src="Pic_for_readme/TB_ADE.png" alt="ADE Settings" width="550"/>
+</p>
+
+---
+
+### 📈 Measurement Circuits
+
+| Circuit | Purpose | Configuration | Simulation Type |
+|---------|---------|---------------|-----------------|
+| **#1: Bode** | Gain & Phase Margin | Unity-gain feedback, loop broken with `iprobe` | STB Analysis |
+| **#2: CMRR** | Common-Mode Rejection | Common-mode input stimulus | AC Analysis |
+| **#3: PSRR** | Supply Rejection | AC noise on VDD/VSS | AC Analysis |
+
+<table>
+<tr>
+<td width="33%">
+<p align="center"><b>Bode Plot Extraction</b></p>
+<img src="Pic_for_readme/TB_Bode.png" alt="Bode TB"/>
+<p align="center"><i>STB simulation with loop break</i></p>
+</td>
+<td width="33%">
+<p align="center"><b>CMRR Measurement</b></p>
+<img src="Pic_for_readme/TB_CMRR.png" alt="CMRR TB"/>
+<p align="center"><i>Common-mode stimulus</i></p>
+</td>
+<td width="33%">
+<p align="center"><b>PSRR Measurement</b></p>
+<img src="Pic_for_readme/TB_PSRR.png" alt="PSRR TB"/>
+<p align="center"><i>Supply noise injection</i></p>
+</td>
+</tr>
+</table>
+
+</details>
+
 
 ---
 
