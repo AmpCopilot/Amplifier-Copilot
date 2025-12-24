@@ -1,0 +1,6 @@
+cUiSetViewStatus {CASCODE_AMP_1} {layout} {1}
+cUiSetViewStatus {CASCODE_AMP_1} {logical} {0}
+cUiSetViewStatus {CASCODE_AMP_1} {abstract.pin} {0}
+cUiSetViewStatus {CASCODE_AMP_1} {abstract.ext} {0}
+cUiSetViewStatus {CASCODE_AMP_1} {abstract} {0}
+cUiSetViewStatus {CASCODE_AMP_1} {abstract.ver} {0}

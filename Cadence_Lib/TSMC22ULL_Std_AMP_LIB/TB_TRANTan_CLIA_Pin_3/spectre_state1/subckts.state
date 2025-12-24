@@ -1,0 +1,3 @@
+_subcktKeepList = nil
+savedComponent = _subcktKeepList 
+_subcktKeepList = 'unbound

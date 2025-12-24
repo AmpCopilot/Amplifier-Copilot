@@ -1,0 +1,3 @@
+_opPointKeepList = nil
+savedComponent = _opPointKeepList 
+_opPointKeepList = 'unbound

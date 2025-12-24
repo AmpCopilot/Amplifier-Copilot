@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      zhihc21
+HostName                       asic-s06
+ProcessIdentifier              236805
+ProcessCreationTime_UTC        1746189039
+ProcessCreationTime_Readable   Fri May  2 20:30:39 2025 CST
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /home/soc/zhihc21/0_Cadence_Lib/TSMC22ULL_Std_AMP_LIB/TB_TwoStFixIRatio_SMCNR_Pin_2/schematic/sch.oa.cdslck
+TimeEditLocked                 Fri Jun 27 15:13:09 2025 CST

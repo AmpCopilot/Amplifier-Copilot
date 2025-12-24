@@ -1,0 +1,3 @@
+; Mar 29 22:15:53 2025
+((selectionObject netProbe (probe:NULL) fullName "/VOUT" type net))
+((selectionObject instCellName "vdc" fullName "/V0" type instance))

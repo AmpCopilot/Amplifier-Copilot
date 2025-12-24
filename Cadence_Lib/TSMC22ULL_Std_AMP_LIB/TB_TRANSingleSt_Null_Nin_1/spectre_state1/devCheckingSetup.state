@@ -1,0 +1,53 @@
+(nil	devCheckingEnabled "no"
+  asserts (	)
+	inclusiveFilters (	)
+	exclusiveFilters (	)
+	options (nil
+		checklimit (nil
+			pzFilterExtreme  nil
+			pzFilterNone  nil
+			pzAddtionalArguments  nil
+			pzDisableAll  nil
+			pzEnableAll  nil
+			pzSeverity  "None"
+			noiseFilterExtreme  nil
+			noiseFilterNone  nil
+			noiseAddtionalArguments  nil
+			noiseDisableAll  nil
+			noiseEnableAll  nil
+			noiseSeverity  "None"
+			spFilterExtreme  nil
+			spFilterNone  nil
+			spAddtionalArguments  nil
+			spDisableAll  nil
+			spEnableAll  nil
+			spSeverity  "None"
+			acFilterExtreme  nil
+			acFilterNone  nil
+			acAddtionalArguments  nil
+			acDisableAll  nil
+			acEnableAll  nil
+			acSeverity  "None"
+			dcOpFilterExtreme  nil
+			dcOpFilterNone  nil
+			dcOpAddtionalArguments  nil
+			dcOpDisableAll  nil
+			dcOpEnableAll  nil
+			dcOpSeverity  "None"
+			dcFilterExtreme  nil
+			dcFilterNone  nil
+			dcAddtionalArguments  nil
+			dcDisableAll  nil
+			dcEnableAll  nil
+			dcSeverity  "None"
+			tranFilterExtreme  nil
+			tranFilterNone  nil
+			tranAddtionalArguments  nil
+			tranDisableAll  nil
+			tranEnableAll  nil
+			tranSeverity  "None"
+			tranStopTime  nil
+			tranStartTime  nil
+		)
+	)
+)

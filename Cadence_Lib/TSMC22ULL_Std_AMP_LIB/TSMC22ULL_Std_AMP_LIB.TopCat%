@@ -1,0 +1,4 @@
+TDMCHECKPOINT="1.0"
+TSMC22ULL_Std_AMP_LIB/Basic_TB.Cat type="category"
+TSMC22ULL_Std_AMP_LIB/Circuits.Cat type="category"
+TSMC22ULL_Std_AMP_LIB/Testbenchs.Cat type="category"

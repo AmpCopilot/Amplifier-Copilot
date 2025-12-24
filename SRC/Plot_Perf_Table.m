@@ -1,64 +1,94 @@
 function axArr = Plot_Perf_Table(dataTbl,var_pairs,parent)
-% 按 Topo 上色并把每个 Topo 的点数写进 legend
+% Plot_Perf_Table  Draw five scatter plots of the performance table
+%   • Color is grouped by Topology (Topo)
+%   • Legend shows point count of each topology
 %
-% axArr : 5 个散点轴（最下一行 legend 轴不返回）
+% axArr – graphics handle array of the five scatter axes
+% (The last row that only contains the legend axis is not returned.)
 
-% ---------- 0. 容器 -------------------------------------------------
+%% ------------------------------------------------------------------------
+% 0)  Axis scale configuration (edit here only)
+%     {'linear' | 'log'}  ×  5 rows, each row = {xScale , yScale}
+axisMode = { {'log'   ,'linear'}   ...  % plot-1 : log-x / linear-y
+           , {'linear','linear'}   ...  % plot-2 : linear / linear
+           , {'log'   ,'log'   }   ...  % plot-3 : log / log
+           , {'log'   ,'log'   }   ...  % plot-4 : log / log
+           , {'log'   ,'log'   } };     % plot-5 : log / log
+%% ------------------------------------------------------------------------
+
+% Container ---------------------------------------------------------------
 if nargin<3 || isempty(parent), parent = gcf; end
-delete(get(parent,'Children'));
+delete(get(parent,'Children'));                     % clear previous axes
 
-nPlot = numel(var_pairs);                      % =5
-tlay  = tiledlayout(parent,nPlot+1,1,'TileSpacing','compact','Padding','compact');
+nPlot = numel(var_pairs);                           % expected = 5
+tlay  = tiledlayout(parent,nPlot+1,1, ...
+                    'TileSpacing','compact', ...
+                    'Padding','compact');
 
-% ---------- 1. 分组 / 颜色 / 点大小 --------------------------------
-features = categorical(dataTbl.Topo);          % 只按 Topo 分组
-featNames= categories(features);
-nFeat    = numel(featNames);
-cmap     = lines(nFeat);
+% Grouping / color map / point size --------------------------------------
+features  = categorical(dataTbl.Topo);              % group by Topo
+featNames = categories(features);
+nFeat     = numel(featNames);
+cmap      = lines(nFeat);                           % distinct colors
 
-% legend 字符串附加数量
-counts   = zeros(1,nFeat);
-for i=1:nFeat
-    counts(i) = sum(features==featNames{i});
+% Legend text with point count
+counts  = zeros(1,nFeat);
+for i = 1:nFeat
+    counts(i) = sum(features == featNames{i});
 end
-legStr   = cellfun(@(s,n)sprintf('%s (%d)',s,n),featNames,num2cell(counts)','uni',0);
+legStr = cellfun(@(s,n)sprintf('%s (%d)',s,n), ...
+                 featNames,num2cell(counts)','uni',0);
 
+% Point size mapped to chip_area (quantile-based)
 q        = quantile(dataTbl.chip_area,linspace(0,1,2000));
 [~,~,qi] = histcounts(dataTbl.chip_area,[-inf q inf]);
 ptSize   = 10 + (qi-1)/1999*5;
 
-% ---------- 2. 五幅散点 --------------------------------------------
-axArr = gobjects(nPlot,1);
-hProxy = gobjects(nFeat,1);                    % legend 代理
+% Draw 5 scatter plots ----------------------------------------------------
+axArr  = gobjects(nPlot,1);
+hProxy = gobjects(nFeat,1);                          % first plot proxy for legend
 
 for k = 1:nPlot
     axArr(k) = nexttile(tlay,k);  hold(axArr(k),'on');
-    xVar = var_pairs{k}{1};    yVar = var_pairs{k}{2};
+    xVar = var_pairs{k}{1};
+    yVar = var_pairs{k}{2};
+
+    % Axis scale for this plot
+    xMode = lower(axisMode{k}{1});   % 'linear' | 'log'
+    yMode = lower(axisMode{k}{2});
 
     for f = 1:nFeat
         idx = features == featNames{f};
-        if k>=4                                   % log-log 图
-            idx = idx & dataTbl.(xVar)>0 & dataTbl.(yVar)>0;
-        end
 
-        h = scatter(axArr(k),dataTbl.(xVar)(idx),dataTbl.(yVar)(idx),...
-                     ptSize(idx),cmap(f,:),'filled','LineWidth',0.05);
-        if k==1, hProxy(f)=h; end
+        % Exclude invalid data for log axes (≤0)
+        if strcmp(xMode,'log'), idx = idx & dataTbl.(xVar) > 0; end
+        if strcmp(yMode,'log'), idx = idx & dataTbl.(yVar) > 0; end
+        if ~any(idx), continue, end          % no point for this group
+
+        h = scatter(axArr(k), ...
+                    dataTbl.(xVar)(idx), dataTbl.(yVar)(idx), ...
+                    ptSize(idx), ...
+                    cmap(f,:), 'filled', 'LineWidth',0.05);
+        if k==1, hProxy(f) = h; end          % first plot keeps proxies
     end
 
-    if k>=3, set(axArr(k),'XScale','log','YScale','log'); end
-    if k==1, set(axArr(k),'XScale','log'); end
-    xlabel(axArr(k),strrep(xVar,'_','\_'));
-    ylabel(axArr(k),strrep(yVar,'_','\_'));
-    title(axArr(k),sprintf('%s vs. %s',xVar,yVar),'Interpreter','none');
-    % ---- 网格 + 粗外框 --------------------------------------
+    % Apply axis scale
+    set(axArr(k),'XScale',xMode,'YScale',yMode);
+
+    % Labels and title
+    xlabel(axArr(k), strrep(xVar,'_','\_'));
+    ylabel(axArr(k), strrep(yVar,'_','\_'));
+    title(axArr(k), sprintf('%s vs. %s',xVar,yVar), 'Interpreter','none');
+
+    % Grid and box style
     grid(axArr(k),'on');
-    set(axArr(k), 'GridAlpha',0.25,'GridLineStyle','-');   % 主网格
-    set(axArr(k), 'MinorGridAlpha',0.08);                  % (可选)微网格
-    set(axArr(k), 'Box','on','LineWidth',1.5);             % 粗外框
+    set(axArr(k), 'GridAlpha',0.25,'GridLineStyle','-');   % major grid
+    set(axArr(k), 'MinorGridAlpha',0.08);                  % minor grid
+    set(axArr(k), 'Box','on','LineWidth',1.5);             % thick border
 end
 
-% ---------- 3. legend 独占一行 --------------------------------------
+% Dedicated legend row ----------------------------------------------------
 axLeg = nexttile(tlay,nPlot+1);  axis(axLeg,'off');
-legend(axLeg,hProxy,strrep(legStr,'_','\_'),'NumColumns',2,'Location','south','Box','on');
+legend(axLeg, hProxy, strrep(legStr,'_','\_'), ...
+       'NumColumns',2, 'Location','south', 'Box','on');
 end

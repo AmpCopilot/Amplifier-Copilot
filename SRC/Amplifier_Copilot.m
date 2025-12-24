@@ -8,7 +8,7 @@ function Amplifier_Copilot()
     
     var_pairs  = {{'gbw','gain'},{'CMRR','PSRR'},...
                   {'gbw','SR'},{'noise','vos'},{'ivdd_27','chip_area'}};
-
+    
     % allVars    = unique([var_pairs{:}]);
     % -------- 自定义性能显示顺序 ---------------------------------
     prefOrder  = ["gain","gbw","ivdd_27","CMRR","PSRR","vos","SR","tc","noise","pm","VDD","VCM","CL","chip_area","settlingTime","Tech_nodes","FOMS","FOML"]; % 想排在前面的

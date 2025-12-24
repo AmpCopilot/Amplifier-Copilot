@@ -1,0 +1,30 @@
+(turboOpts analogInstValue) nil
+(turboOpts analogSubcktValue) nil
+(turboOpts apsplus) t
+(turboOpts cktpreset) "None"
+(turboOpts dcOPSolver) "APS"
+(turboOpts digitalInstValue) nil
+(turboOpts digitalSubcktValue) nil
+(turboOpts digitalspeed) "2"
+(turboOpts disableVddOverride) t
+(turboOpts envSwitch) nil
+(turboOpts errorLevel) "Do not override"
+(turboOpts mtOption) "Auto"
+(turboOpts numThreads) ""
+(turboOpts optvdd) 3.3
+(turboOpts preserveInst) nil
+(turboOpts preserveOption) "None"
+(turboOpts proc_affinity) ""
+(turboOpts psrFmax) ""
+(turboOpts psrFmaxRCR) ""
+(turboOpts psrOption) "Default"
+(turboOpts psrSwitch) t
+(turboOpts psrXpsmsOption) "Default"
+(turboOpts rcrNetFmax) nil
+(turboOpts spectreDecouplingCapacitorThreshold) ""
+(turboOpts spectreResistorShortingThreshold) ""
+(turboOpts uniMode) "Spectre"
+(turboOpts virtualGroundNodes) nil
+(turboOpts virtualPowerNodeListBox) (nil choices nil value nil)
+(turboOpts virtualPowerNodeValue) nil
+(turboOpts virtualPowerNodes) nil

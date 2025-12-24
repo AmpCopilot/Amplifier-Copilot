@@ -1,0 +1,319 @@
+savedComponent = (let
+(tmp1 tmp2 tmp3 tmp4 tmp5 tmp6 tmp7 tmp8 tmp9 tmp10 tmp11 tmp12 tmp13 tmp14 tmp15 tmp16 tmp17 tmp18 tmp19 tmp20 tmp21 tmp22 tmp23 tmp24 tmp25 tmp26 tmp27 tmp28 tmp29 tmp30 tmp31 tmp32 tmp33 tmp34 tmp35)
+(unless tmp1
+tmp1 = make_sevVariableStruct()
+)
+(unless tmp1
+tmp1 = (ncons nil)
+)
+tmp1->name = "MOSFET_10_1_L_gm2_NMOS"
+tmp1->expression = "1u"
+tmp1->index = 1
+(unless tmp2
+tmp2 = make_sevVariableStruct()
+)
+(unless tmp2
+tmp2 = (ncons nil)
+)
+tmp2->name = "MOSFET_10_1_M_gm2_NMOS"
+tmp2->expression = "64"
+tmp2->index = 2
+(unless tmp3
+tmp3 = make_sevVariableStruct()
+)
+(unless tmp3
+tmp3 = (ncons nil)
+)
+tmp3->name = "MOSFET_10_1_W_gm2_NMOS"
+tmp3->expression = "1u"
+tmp3->index = 3
+(unless tmp4
+tmp4 = make_sevVariableStruct()
+)
+(unless tmp4
+tmp4 = (ncons nil)
+)
+tmp4->name = "CAPACITOR_0"
+tmp4->expression = "1p"
+tmp4->index = 4
+(unless tmp5
+tmp5 = make_sevVariableStruct()
+)
+(unless tmp5
+tmp5 = (ncons nil)
+)
+tmp5->name = "MOSFET_0_8_L_BIASCM_PMOS"
+tmp5->expression = "1u"
+tmp5->index = 5
+(unless tmp6
+tmp6 = make_sevVariableStruct()
+)
+(unless tmp6
+tmp6 = (ncons nil)
+)
+tmp6->name = "MOSFET_0_8_M_BIASCM_PMOS"
+tmp6->expression = "4"
+tmp6->index = 6
+(unless tmp7
+tmp7 = make_sevVariableStruct()
+)
+(unless tmp7
+tmp7 = (ncons nil)
+)
+tmp7->name = "MOSFET_0_8_W_BIASCM_PMOS"
+tmp7->expression = "1u"
+tmp7->index = 7
+(unless tmp8
+tmp8 = make_sevVariableStruct()
+)
+(unless tmp8
+tmp8 = (ncons nil)
+)
+tmp8->name = "MOSFET_11_1_L_gmf2_PMOS"
+tmp8->expression = "1u"
+tmp8->index = 8
+(unless tmp9
+tmp9 = make_sevVariableStruct()
+)
+(unless tmp9
+tmp9 = (ncons nil)
+)
+tmp9->name = "MOSFET_11_1_M_gmf2_PMOS"
+tmp9->expression = "4"
+tmp9->index = 9
+(unless tmp10
+tmp10 = make_sevVariableStruct()
+)
+(unless tmp10
+tmp10 = (ncons nil)
+)
+tmp10->name = "MOSFET_11_1_W_gmf2_PMOS"
+tmp10->expression = "1u"
+tmp10->index = 10
+(unless tmp11
+tmp11 = make_sevVariableStruct()
+)
+(unless tmp11
+tmp11 = (ncons nil)
+)
+tmp11->name = "MOSFET_15_2_L_gmc2_NMOS"
+tmp11->expression = "1u"
+tmp11->index = 11
+(unless tmp12
+tmp12 = make_sevVariableStruct()
+)
+(unless tmp12
+tmp12 = (ncons nil)
+)
+tmp12->name = "MOSFET_15_2_M_gmc2_NMOS"
+tmp12->expression = "4"
+tmp12->index = 12
+(unless tmp13
+tmp13 = make_sevVariableStruct()
+)
+(unless tmp13
+tmp13 = (ncons nil)
+)
+tmp13->name = "MOSFET_15_2_W_gmc2_NMOS"
+tmp13->expression = "1u"
+tmp13->index = 13
+(unless tmp14
+tmp14 = make_sevVariableStruct()
+)
+(unless tmp14
+tmp14 = (ncons nil)
+)
+tmp14->name = "MOSFET_17_7_L_BIASCM_NMOS"
+tmp14->expression = "1u"
+tmp14->index = 14
+(unless tmp15
+tmp15 = make_sevVariableStruct()
+)
+(unless tmp15
+tmp15 = (ncons nil)
+)
+tmp15->name = "MOSFET_17_7_M_BIASCM_NMOS"
+tmp15->expression = "4"
+tmp15->index = 15
+(unless tmp16
+tmp16 = make_sevVariableStruct()
+)
+(unless tmp16
+tmp16 = (ncons nil)
+)
+tmp16->name = "MOSFET_17_7_W_BIASCM_NMOS"
+tmp16->expression = "1u"
+tmp16->index = 16
+(unless tmp17
+tmp17 = make_sevVariableStruct()
+)
+(unless tmp17
+tmp17 = (ncons nil)
+)
+tmp17->name = "MOSFET_23_1_L_gm3_NMOS"
+tmp17->expression = "1u"
+tmp17->index = 17
+(unless tmp18
+tmp18 = make_sevVariableStruct()
+)
+(unless tmp18
+tmp18 = (ncons nil)
+)
+tmp18->name = "MOSFET_23_1_M_gm3_NMOS"
+tmp18->expression = "4"
+tmp18->index = 18
+(unless tmp19
+tmp19 = make_sevVariableStruct()
+)
+(unless tmp19
+tmp19 = (ncons nil)
+)
+tmp19->name = "MOSFET_23_1_W_gm3_NMOS"
+tmp19->expression = "1u"
+tmp19->index = 19
+(unless tmp20
+tmp20 = make_sevVariableStruct()
+)
+(unless tmp20
+tmp20 = (ncons nil)
+)
+tmp20->name = "MOSFET_5_2_L_LOAD1_PMOS"
+tmp20->expression = "1u"
+tmp20->index = 20
+(unless tmp21
+tmp21 = make_sevVariableStruct()
+)
+(unless tmp21
+tmp21 = (ncons nil)
+)
+tmp21->name = "MOSFET_5_2_M_LOAD1_PMOS"
+tmp21->expression = "4"
+tmp21->index = 21
+(unless tmp22
+tmp22 = make_sevVariableStruct()
+)
+(unless tmp22
+tmp22 = (ncons nil)
+)
+tmp22->name = "MOSFET_5_2_W_LOAD1_PMOS"
+tmp22->expression = "1u"
+tmp22->index = 22
+(unless tmp23
+tmp23 = make_sevVariableStruct()
+)
+(unless tmp23
+tmp23 = (ncons nil)
+)
+tmp23->name = "MOSFET_60_2_L_gmc1_PMOS"
+tmp23->expression = "1u"
+tmp23->index = 23
+(unless tmp24
+tmp24 = make_sevVariableStruct()
+)
+(unless tmp24
+tmp24 = (ncons nil)
+)
+tmp24->name = "MOSFET_60_2_M_gmc1_PMOS"
+tmp24->expression = "4"
+tmp24->index = 24
+(unless tmp25
+tmp25 = make_sevVariableStruct()
+)
+(unless tmp25
+tmp25 = (ncons nil)
+)
+tmp25->name = "MOSFET_60_2_W_gmc1_PMOS"
+tmp25->expression = "1u"
+tmp25->index = 25
+(unless tmp26
+tmp26 = make_sevVariableStruct()
+)
+(unless tmp26
+tmp26 = (ncons nil)
+)
+tmp26->name = "MOSFET_70_1_L_gmf1_PMOS"
+tmp26->expression = "1u"
+tmp26->index = 26
+(unless tmp27
+tmp27 = make_sevVariableStruct()
+)
+(unless tmp27
+tmp27 = (ncons nil)
+)
+tmp27->name = "MOSFET_70_1_M_gmf1_PMOS"
+tmp27->expression = "4"
+tmp27->index = 27
+(unless tmp28
+tmp28 = make_sevVariableStruct()
+)
+(unless tmp28
+tmp28 = (ncons nil)
+)
+tmp28->name = "MOSFET_70_1_W_gmf1_PMOS"
+tmp28->expression = "1u"
+tmp28->index = 28
+(unless tmp29
+tmp29 = make_sevVariableStruct()
+)
+(unless tmp29
+tmp29 = (ncons nil)
+)
+tmp29->name = "MOSFET_8_2_L_gm1_PMOS"
+tmp29->expression = "1u"
+tmp29->index = 29
+(unless tmp30
+tmp30 = make_sevVariableStruct()
+)
+(unless tmp30
+tmp30 = (ncons nil)
+)
+tmp30->name = "MOSFET_8_2_M_gm1_PMOS"
+tmp30->expression = "4"
+tmp30->index = 30
+(unless tmp31
+tmp31 = make_sevVariableStruct()
+)
+(unless tmp31
+tmp31 = (ncons nil)
+)
+tmp31->name = "MOSFET_8_2_W_gm1_PMOS"
+tmp31->expression = "1u"
+tmp31->index = 31
+(unless tmp32
+tmp32 = make_sevVariableStruct()
+)
+(unless tmp32
+tmp32 = (ncons nil)
+)
+tmp32->name = "CURRENT_0_BIAS"
+tmp32->expression = "10u"
+tmp32->index = 32
+(unless tmp33
+tmp33 = make_sevVariableStruct()
+)
+(unless tmp33
+tmp33 = (ncons nil)
+)
+tmp33->name = "CLOAD"
+tmp33->expression = "100p"
+tmp33->index = 33
+(unless tmp34
+tmp34 = make_sevVariableStruct()
+)
+(unless tmp34
+tmp34 = (ncons nil)
+)
+tmp34->name = "VCM"
+tmp34->expression = "300m"
+tmp34->index = 34
+(unless tmp35
+tmp35 = make_sevVariableStruct()
+)
+(unless tmp35
+tmp35 = (ncons nil)
+)
+tmp35->name = "VDD"
+tmp35->expression = "800m"
+tmp35->index = 35
+list(tmp1 tmp2 tmp3 tmp4 tmp5 tmp6 tmp7 tmp8 tmp9 tmp10 tmp11 tmp12 tmp13 tmp14 tmp15 tmp16 tmp17 tmp18 tmp19 tmp20 tmp21 tmp22 tmp23 tmp24 tmp25 tmp26 tmp27 tmp28 tmp29 tmp30 tmp31 tmp32 tmp33 tmp34 tmp35)
+)
