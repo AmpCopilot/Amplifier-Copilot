@@ -42,7 +42,7 @@
 
 ### 🎯 Comprehensive Design Space
 - **22** distinct amplifier topologies
-- **2800+** pre-characterized netlists
+- **4000+** pre-characterized netlists
 - Coverage from **20-170 dB** gain
 - Bandwidth range: **100 kHz - 10 GHz**
 
@@ -50,10 +50,10 @@
 <td width="50%">
 
 ### 🔬 Process Support
-- **T22**: 0.9V & 1.8V technologies
-- **T180**: 1.8V & 5V technologies
-- **5 PVT corners** validation
-- **13** performance metrics evaluation
+- **T22nn** VDD:(0.9V&1.8V)
+- **T40nm [New]** VDD:(0.9V&2.5V)
+- **T65nm [New]** VDD:(1.2V&3.3V)
+- **T180nm** VDD:(1.8V&5V)
 
 </td>
 </tr>
@@ -71,8 +71,8 @@
 
 ### ✅ Production Ready
 - **Tape-out proven** designs
-- Industry-validated topologies
-- Comprehensive simulation data
+- **5 PVT corners** validation
+- **13** performance metrics evaluation
 - Export-ready netlists
 
 </td>
@@ -80,6 +80,26 @@
 </table>
 
 ---
+<details open>
+<summary><b>📅 Update Log & Release Notes</b></summary>
+<br>
+
+### 🎄 v2025.12.24 - Christmas Eve Special Release
+
+- **Expanded Database Coverage**  
+  Added support for **40nm and 65nm process nodes**, bringing total database size to **4,000+ design points**
+
+- **Enhanced Visualization Quality**  
+  Performance plots are no longer compressed based on user feedback
+
+- **Schematic Updates & Data Cleanup**  
+  Removed legacy data for **NMCNR, NMCF, and DFCFC1** topologies due to schematic refinements
+
+- **🔜 Coming Soon (Next Week)**  
+  Adding **Rail-to-Rail, Class-AB** operational amplifier topologies
+
+</details>
+
 
 ## 🚀 Quick Start
 
@@ -196,11 +216,13 @@ Our database uses the following device models for each process/voltage configura
 |------------------|-------------------------|----------------|----------------|------------|
 | **22nm** | 0.9V | `nch_ulvt_mac` | `pch_ulvt_mac` | ✅ Available |
 | **22nm** | 1.8V | `nch_18_mac` | `pch_18_mac` | ✅ Available |
+| **40nm** | 0.9V | `nch_mac` | `pch_mac` | ✅ Available  |
+| **40nm** | 2.5V | `nch_25_mac` | `pch_25_mac` | ✅ Available  |
+| **65nm** | 1.2V | `nch_mac` | `pch_mac` | ✅ Available  |
+| **65nm** | 3.3V | `nch_33_mac` | `pch_33_mac` | ✅ Available  |
 | **180nm** | 1.8V | `nch_mac` | `pch_mac` | ✅ Available |
 | **180nm** | 5V | `nch5_lvt_gb` | `pch5_lvt_mac` | ✅ Available |
-| **65nm** | 1.2V | `nch_mac` | `pch_mac` | 🔄 Coming Soon |
-| **65nm** | 3.3V | `nch_33_mac` | `pch_33_mac` | 🔄 Coming Soon |
-| **40nm** | 0.9V | `nch_mac` | `pch_mac` | 🔄 Coming Soon |
+
 
 ---
 
@@ -382,12 +404,11 @@ While we work on expanding our database, you can reference existing process node
 
 | **Your Target Process** | **Recommended Reference** | **Notes** |
 |------------------------|---------------------------|-----------|
-| **22nm, 28nm, 40nm** | 22nm / 0.9V| Planar 22nm and 28nm processes show negligible differences |
-| **65nm, 90nm** | 22nm / 1.8V | Similar voltage domain characteristics |
-| **130nm, 180nm** | 180nm / 1.8V | Comparable device behavior |
+| **28nm** | 22nm | Planar 22nm and 28nm processes show negligible differences |
+| **90nm** | 65nm | Comparable device behavior |
+| **130nm** | 180nm| Comparable device behavior |
 | **Mature nodes (>180nm)** | 180nm / 5V | Suitable for legacy process technologies |
 
-TSMC 65nm will be update soon, then is TSMC 40nm.
 
 **Note:** These references provide reasonable starting points for design exploration. For production designs, we recommend validating with your target process specifications.
 ---
