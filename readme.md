@@ -313,35 +313,6 @@ Our database uses the following device models for each process/voltage configura
 </tbody>
 </table>
 
----
-
-### 📄  Simulation
-
-**Device models and testbench details** can be viewed by exporting the netlist from our tool.
-The exported netlists are **Spectre-compatible** and can be used directly for circuit simulation after updating the library paths.
-
-**Example Spectre simulation command:**
-```bash
-spectre -64 /input/TB0_ff_3.4_85_1.6.scs \
-+escchars \
-=log /output/spectre.out \
--format psfascii \
--raw /output/out_file0_ff_3.4_85_1.6 \
-+aps \
-+lqtimeout 900 \
--maxw 5 \
--maxn 5 \
--env ade
-```
-
-**Workflow:**
-1. Export netlist from Amplifier-Copilot
-2. Modify library file paths to match your PDK installation
-3. Run Spectre simulation with the command above
-4. Analyze results in your preferred waveform viewer
-
-
----
 
 ## 🔧 Development Guide
 
@@ -462,6 +433,24 @@ Simulations are controlled via the ADE setup shown below:
 
 </details>
 
+### 📄  Command Line Simulation
+
+The exported netlists are base on **Spectre** and can be used directly for circuit simulation after updating the library paths.
+
+**Example Spectre simulation command:**
+```bash
+spectre -64 /input/TB0_ff_3.4_85_1.6.scs \
++escchars \
+=log /output/spectre.out \
+-format psfascii \
+-raw /output/out_file0_ff_3.4_85_1.6 \
++aps \
++lqtimeout 900 \
+-maxw 5 \
+-maxn 5 \
+-env ade
+```
+
 
 ---
 
@@ -506,7 +495,6 @@ While we work on expanding our database, you can reference existing process node
 
 
 **Note:** These references provide reasonable starting points for design exploration. For production designs, we recommend validating with your target process specifications.
----
 
 ## 📄 License
 
