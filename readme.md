@@ -62,9 +62,9 @@
 
 ### 🆓 Open & Accessible
 - Completely **free and open-source**
-- Built with **MATLAB** (base installation only)
+- Built with **MATLAB** 
 - No additional toolboxes required
-- Active community support
+- Link to Cadence design flow
 
 </td>
 <td width="50%">
@@ -190,7 +190,52 @@ After selection, you can:
 
 </details>
 
----
+<details open>
+<summary><b>Step 4: Import to Cadence Virtuoso</b></summary>
+
+<br>
+
+Automatically load exported netlist's parameters into **Virtuoso Cadence ADE L** using our helper script:
+
+**4.1. Setup Script Directory**
+
+Copy the `./Read_scs_Script` directory to your Virtuoso run directory.
+
+**4.2. Prepare Virtuoso Environment**
+
+1. Import `Cadence_Lib/TSMC22ULL_Std_AMP_LIB` into your Virtuoso Library Manager
+2. Open any TB cell's `spectre_state` view
+3. Launch **only one ADE L window** 
+
+**4.3. Prepare Netlist File**
+
+1. Place the `.scs` netlist exported from Amplifier Copilot into `Read_scs_Script/input_scs/`
+2. Rename it to `1.scs`
+
+**4.4. Execute Import Script**
+
+In the **CIW (Command Interpreter Window)**, enter the following commands:
+
+```skill
+load("./Read_scs_Script/script/extractNetlistParams.il")
+lnp("./Read_scs_Script/input_scs/1.scs")
+```
+
+<p align="center">
+<img src="Pic_for_readme/Read_param_script.png" alt="Execute Import Script" width="500"/>
+</p>
+
+**4.5. Verify Parameters**
+
+All parameters will be automatically rounded and loaded into **Design Variables**:
+
+<p align="center">
+<img src="Pic_for_readme/Read_param_script_2.png" alt="Imported Design Variables" width="500"/>
+</p>
+
+
+</details>
+
 
 ## 💻 Compatibility
 
@@ -211,18 +256,62 @@ After selection, you can:
 ### 🔬 Process Node & Device Library Mapping
 
 Our database uses the following device models for each process/voltage configuration:
-
-| **Process Node** | **Supply Voltage (VDD)** | **NMOS Model** | **PMOS Model** | **Status** |
-|------------------|-------------------------|----------------|----------------|------------|
-| **22nm** | 0.9V | `nch_ulvt_mac` | `pch_ulvt_mac` | ✅ Available |
-| **22nm** | 1.8V | `nch_18_mac` | `pch_18_mac` | ✅ Available |
-| **40nm** | 0.9V | `nch_mac` | `pch_mac` | ✅ Available  |
-| **40nm** | 2.5V | `nch_25_mac` | `pch_25_mac` | ✅ Available  |
-| **65nm** | 1.2V | `nch_mac` | `pch_mac` | ✅ Available  |
-| **65nm** | 3.3V | `nch_33_mac` | `pch_33_mac` | ✅ Available  |
-| **180nm** | 1.8V | `nch_mac` | `pch_mac` | ✅ Available |
-| **180nm** | 5V | `nch5_lvt_gb` | `pch5_lvt_mac` | ✅ Available |
-
+<table>
+<thead>
+  <tr>
+    <th>Process Node</th>
+    <th>Supply Voltage</th>
+    <th>NMOS Device</th>
+    <th>PMOS Device</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="2">✅ <b>22nm</b></td>
+    <td>0.9V</td>
+    <td><code>nch_ulvt_mac</code></td>
+    <td><code>pch_ulvt_mac</code></td>
+  </tr>
+  <tr>
+    <td>1.8V</td>
+    <td><code>nch_18_mac</code></td>
+    <td><code>pch_18_mac</code></td>
+  </tr>
+  <tr>
+    <td rowspan="2">✅ <b>40nm</b></td>
+    <td>0.9V</td>
+    <td><code>nch_elvt_mac</code></td>
+    <td><code>pch_elvt_mac</code></td>
+  </tr>
+  <tr>
+    <td>2.5V</td>
+    <td><code>nch_25_mac</code></td>
+    <td><code>pch_25_mac</code></td>
+  </tr>
+  <tr>
+    <td rowspan="2">✅ <b>65nm</b></td>
+    <td>1.2V</td>
+    <td><code>nch_mac</code></td>
+    <td><code>pch_mac</code></td>
+  </tr>
+  <tr>
+    <td>3.3V</td>
+    <td><code>nch_33_mac</code></td>
+    <td><code>pch_33_mac</code></td>
+  </tr>
+  <tr>
+    <td rowspan="2">✅ <b>180nm</b></td>
+    <td>1.8V</td>
+    <td><code>nch_mac</code></td>
+    <td><code>pch_mac</code></td>
+  </tr>
+  <tr>
+    <td>5V</td>
+    <td><code>nch5_lvt_gb</code></td>
+    <td><code>pch5_lvt_mac</code></td>
+  </tr>
+</tbody>
+</table>
 
 ---
 
@@ -317,19 +406,25 @@ Edit `Amplifier_Copilot.m` to customize:
 </details>
 
 <details open>
-<summary><b>🔬 Testbench Design & Performance Extraction</b></summary>
+<summary><b>🔬 Cadence Library Information  &  Testbench Design</b></summary>
 
 <br>
 
-Amplifier Copilot exports a **multi-circuit testbench netlist** that characterizes amplifier performance through three parallel measurement setups.
+- **Process:** TSMC 22nm standard library (attachable to similar TSMC standard PDKs)
+- **Organization:** Circuits are categorized into three groups:
+  - `Circuits` - Amplifier topologies
+  - `Basic_TB` - Basic testbenches
+  - `Tran_TB` - Transient analysis testbenches
+- **Tip:** Enable **"Show categories"** in Cadence Library Manager to view the organized structure
 
-### Overall Architecture
+The basic testbench instantiates three amplifier copies, each configured for a specific measurement. Both schematic and Spectre netlist can be found in **Cadence_Lib/TSMC22ULL_Std_AMP_LIB** (TB_* naming convention).
 
 <p align="center">
 <img src="Pic_for_readme/TB_Overview.png" alt="TB Overview" width="650"/>
 </p>
 
-The testbench instantiates three amplifier copies, each configured for a specific measurement. Simulations are controlled via the ADE setup shown below:
+
+Simulations are controlled via the ADE setup shown below:
 
 <p align="center">
 <img src="Pic_for_readme/TB_ADE.png" alt="ADE Settings" width="550"/>
@@ -404,7 +499,7 @@ While we work on expanding our database, you can reference existing process node
 
 | **Your Target Process** | **Recommended Reference** | **Notes** |
 |------------------------|---------------------------|-----------|
-| **28nm** | 22nm | Planar 22nm and 28nm processes show negligible differences |
+| **28nm** | 22nm | Tape-out proven that's negligible differences |
 | **90nm** | 65nm | Comparable device behavior |
 | **130nm** | 180nm| Comparable device behavior |
 | **Mature nodes (>180nm)** | 180nm / 5V | Suitable for legacy process technologies |
