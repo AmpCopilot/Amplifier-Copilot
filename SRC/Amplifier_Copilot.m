@@ -1,5 +1,5 @@
 function Amplifier_Copilot()
-% Haochang, 2025-07
+% Haochang, 2025-12
 
     % =============================================================
     % 0. Data and global state
@@ -9,14 +9,14 @@ function Amplifier_Copilot()
     var_pairs  = {{'gbw','gain'},{'CMRR','PSRR'},...
                   {'gbw','SR'},{'noise','vos'},{'ivdd_27','chip_area'}};
     
-    % allVars    = unique([var_pairs{:}]);
-    % -------- 自定义性能显示顺序 ---------------------------------
-    prefOrder  = ["gain","gbw","ivdd_27","CMRR","PSRR","vos","SR","tc","noise","pm","VDD","VCM","CL","chip_area","settlingTime","Tech_nodes","FOMS","FOML"]; % 想排在前面的
-    varsAll    = string(Perf_Table.Properties.VariableNames);         % 表里真正存在的列
-    prefKeep   = prefOrder(ismember(lower(prefOrder),lower(varsAll)));% 已存在的优先列
-    remain     = varsAll(~ismember(lower(varsAll),lower(prefKeep)));  % 其余保持原序
-    allVars    = cellstr([prefKeep , remain]);                        % ← 供 popup 使用
-    varOrder   = [prefKeep , remain];              % ← 表格也用它
+    
+    % -------- Customize performance display order -----------------
+    prefOrder  = ["gain","gbw","ivdd_27","CMRR","PSRR","vos","SR","tc","noise","pm","VDD","VCM","CL","chip_area","settlingTime","Tech_nodes","FOMS","FOML"]; 
+    varsAll    = string(Perf_Table.Properties.VariableNames); 
+    prefKeep   = prefOrder(ismember(lower(prefOrder),lower(varsAll)));
+    remain     = varsAll(~ismember(lower(varsAll),lower(prefKeep)));  
+    allVars    = cellstr([prefKeep , remain]);                     
+    varOrder   = [prefKeep , remain]; 
 
     maskTopo = true(height(Perf_Table),1);
     maskTech = true(height(Perf_Table),1);
@@ -24,15 +24,16 @@ function Amplifier_Copilot()
     maskAdv  = true(height(Perf_Table),1);
     maskVDD = true(height(Perf_Table),1);     
     masterMask = true(height(Perf_Table),1);
-    
-    advList  = {};                         % advanced condition strings
-    scatterAxes  = gobjects(0);            % five scatter sub-axes
-    highlightPts = gobjects(0);            % highlight circles
-    lastIdxOrig  = [];                     % last selected original row
+    maskFOM = true(height(Perf_Table),1);      
+
+    advList  = {};                    
+    scatterAxes  = gobjects(0);       
+    highlightPts = gobjects(0);       
+    lastIdxOrig  = [];                
     
     LabelFontSize = 5;                     % ★ default label font size
-    showWL = true;          % true → 显示 W/L；false → 显示 gm/ft
-    doneTopo = false;   % ← 是否已经确认
+    showWL = true; 
+    doneTopo = false; 
     doneTech = false;
     doneVDD  = false;
     doneCL   = false;
@@ -43,7 +44,7 @@ function Amplifier_Copilot()
     figW = 1400;  figH = 1000;
     left = round((scr(3)-figW)/2);  bot = round((scr(4)-figH)/2);
     
-    mainFig = figure('Name','Amplifier-Copilot v1.0 (Github: Amplifier-Copilot)','Units','pixels',...
+    mainFig = figure('Name','Amplifier-Copilot v25.1.1 (Github: Amplifier-Copilot)','Units','pixels',...
         'OuterPosition',[left bot figW figH],'Resize','on');
     
     panelL = uipanel(mainFig,'Units','normalized','Position',[0   0 0.10 1]);
@@ -54,12 +55,12 @@ function Amplifier_Copilot()
     % 2. Left column ── quick + advanced filter
     % =============================================================
     topoVals = unique(Perf_Table.Topo);
-    topoValsAll = topoVals;      % ← 保存原始列表，搜索时用
+    topoValsAll = topoVals;    
     techVals = unique(Perf_Table.Tech_nodes);
     clVals   = unique(Perf_Table.CL);
     vddVals  = unique(Perf_Table.VDD);
     
-    % -------- layout (same as之前，略) -------------------------------------
+    % -------- layout  -------------------------------------
     uicontrol(panelL,'Style','text','Units','normalized',...
               'Position',[0 0.965 1 0.02],'String','Linear Search','FontWeight','bold');
     
@@ -67,10 +68,10 @@ function Amplifier_Copilot()
     lblTopo = uicontrol(panelL,'Style','text','Units','normalized',...
                'Position',[0.05 0.935 0.9 0.02],...
                'String','1.Pick Topo','HorizontalAlignment','left',...
-               'ForegroundColor','r','FontWeight','bold');     % 初始红色
+               'ForegroundColor','r','FontWeight','bold');   
     
     hTopoSearch = uicontrol(panelL,'Style','edit','Units','normalized',...
-         'Position',[0.55 0.935 0.4 0.025],...   % 与标题同行
+         'Position',[0.55 0.935 0.4 0.025],...  
          'BackgroundColor','white',...
          'TooltipString','Type and Enter to filter topo',...
          'Callback',@topoSearchCallback);
@@ -162,10 +163,30 @@ function Amplifier_Copilot()
     scatterPanel = uipanel(panelM,'Units','normalized','Position',[0 0.05 1 0.95]);
     btnPanel     = uipanel(panelM,'Units','normalized','Position',[0 0 1 0.05]);
     
-    uicontrol(btnPanel,'Style','pushbutton','String','Pick Individual to Plot',...
-              'Units','normalized','Position',[0.3 0.15 0.4 0.7],...
-              'FontSize',10,'Callback',@selectPointCallback);
+    % uicontrol(btnPanel,'Style','pushbutton','String','Pick Individual to Plot',...
+    %           'Units','normalized','Position',[0.3 0.15 0.4 0.7],...
+    %           'FontSize',10,'Callback',@selectPointCallback);
+    % -------- Slider + Button ----------------------------------------
+    uicontrol(btnPanel,'Style','text','Units','normalized',...
+              'Position',[0.02 0.65 0.18 0.3],'String','Filter:',...
+              'HorizontalAlignment','left','FontSize',9,...
+              'BackgroundColor',get(btnPanel,'BackgroundColor'));
     
+    sliderFOM = uicontrol(btnPanel,'Style','slider','Units','normalized',...
+              'Position',[0.02 0.15 0.55 0.25],... 
+              'Min',5,'Max',100,'Value',50,...
+              'SliderStep',[5/95, 20/95],...
+              'Callback',@sliderFOMCallback);
+    
+    txtFOMPercent = uicontrol(btnPanel,'Style','text','Units','normalized',...
+              'Position',[0.16 0.65 0.12 0.3],'String','50%',...
+              'HorizontalAlignment','left','FontSize',9,'FontWeight','bold',...
+              'ForegroundColor',[0 0.45 0.74],... 
+              'BackgroundColor',get(btnPanel,'BackgroundColor'));
+    
+    uicontrol(btnPanel,'Style','pushbutton','String','Pick to Plot',...
+              'Units','normalized','Position',[0.62 0.15 0.36 0.7],...
+              'FontSize',10,'Callback',@selectPointCallback);
     % =============================================================
     % 4. Right column ─ schematic / figures / table / export
     % =============================================================
@@ -179,23 +200,23 @@ function Amplifier_Copilot()
     tblPanel   = uipanel(panelR,'Units','normalized','Position',[0 0.05 1 0.10]);
     exportPanel= uipanel(panelR,'Units','normalized','Position',[0 0.00 1 0.05]);
 
-    axSch = axes(axSchPanel,'Units','normalized','Position',[0 0 0.9 1]); % 留右侧 0.1 给按钮
+    axSch = axes(axSchPanel,'Units','normalized','Position',[0 0 0.9 1]); 
     axFig = axes(axFigPanel,'Units','normalized','Position',[0 0 1 1]);
     
     uicontrol(axFigPanel,'Style','pushbutton','Units','normalized',...
-          'Position',[0.96 0.85 0.035 0.12],...   % 右上角
+          'Position',[0.96 0.85 0.035 0.12],... 
           'String','Del','ForegroundColor','r','FontWeight','bold',...
           'TooltipString','Delete selected point PERMANENTLY!',...
           'Callback',@deletePointCallback);
-    % -------- ★ 新增：User-Guide 按钮 -------------------------------
+    % -------- User-Guide Button -------------------------------
     uicontrol(axFigPanel,'Style','pushbutton','Units','normalized',...
-          'Position',[0.96 0.70 0.035 0.12],...   % 紧跟 Del 下方
+          'Position',[0.96 0.70 0.035 0.12],...  
           'String','UG','TooltipString','Show User Guide',...
           'Callback',@showUserGuide);
 
-    % ── schematic 右侧按钮区 ─────────────────────────────────────
+    % -------- schematic ----------------------------------------------
     uicontrol(axSchPanel,'Style','pushbutton','Units','normalized',...
-              'Position',[0.92 0.80 0.07 0.18],...   % 最高一格
+              'Position',[0.92 0.80 0.07 0.18],...  
               'String','Pop','TooltipString','Pop-out schematic window',...
               'Callback',@popSchCallback);
     
@@ -228,31 +249,30 @@ function Amplifier_Copilot()
     % =============================================================
     % 5. initial scatter
     % =============================================================
-    updateMask();
-    drawScatter();
+    sliderFOMCallback(); 
 
-    showStartupImage(axSch,axFig); % 调用新函数来显示初始图片
+    showStartupImage(axSch,axFig);
 
     % =============================================================
     % ------------ quick filter callbacks --------------------------
     % =============================================================
 
-    % ───────── Topo 回调 ─────────
+    % ───────── Topo Callback ─────────
     function topoCallback(~,~)
-        listTopo = string(get(lbTopo,'String'));   % ① 先转成 string 数组
-        selTopo  = listTopo(get(lbTopo,'Value'));  % ② 再用 Value 索引
+        listTopo = string(get(lbTopo,'String'));   
+        selTopo  = listTopo(get(lbTopo,'Value'));  
         maskTopo = ismember(Perf_Table.Topo , selTopo);
     
         doneTopo = true;  doneTech = false; doneVDD = false; doneCL = false;
-        maskCL  = true(height(Perf_Table),1);   % ← **把 CL 掩码清空**
-        maskVDD  = true(height(Perf_Table),1);   % ← **把 掩码清空**
-        maskTech  = true(height(Perf_Table),1);   % ← **把 掩码清空**
+        maskCL  = true(height(Perf_Table),1);   
+        maskVDD  = true(height(Perf_Table),1);  
+        maskTech  = true(height(Perf_Table),1);  
 
         refreshLists('topo');
         updateLabelState();  updateMask(); drawScatter();
     end
     
-    % ───────── Tech 回调 ─────────
+    % ───────── Tech Callback ─────────
     function techCallback(~,~)
         if ~doneTopo, doneTopo = true; end
     
@@ -261,14 +281,14 @@ function Amplifier_Copilot()
         maskTech = ismember(Perf_Table.Tech_nodes , selTech);
     
         doneTech = true;  doneVDD = false; doneCL = false;
-        maskCL  = true(height(Perf_Table),1);   % ← **把 CL 掩码清空**
-        maskVDD  = true(height(Perf_Table),1);   % ← **把 掩码清空**
+        maskCL  = true(height(Perf_Table),1);   
+        maskVDD  = true(height(Perf_Table),1);  
 
         refreshLists('tech');
         updateLabelState();  updateMask(); drawScatter();
     end
     
-    % ───────── VDD 回调 ─────────
+    % ───────── VDD Callback ─────────
     function vddCallback(~,~)
         if ~doneTopo, doneTopo = true; end
         if ~doneTech, doneTech = true; end
@@ -277,13 +297,13 @@ function Amplifier_Copilot()
         maskVDD = ismember(Perf_Table.VDD , selVDD);
     
         doneVDD = true;  doneCL = false;
-        maskCL  = true(height(Perf_Table),1);   % ← **把 CL 掩码清空**
+        maskCL  = true(height(Perf_Table),1);  
 
         refreshLists('vdd');
         updateLabelState();  updateMask(); drawScatter();
     end
     
-    % ───────── CL 回调 ─────────
+    % ───────── CL Callback ─────────
     function clCallback(~,~)
         
         listCL = str2double(get(lbCL,'String'));
@@ -308,8 +328,7 @@ function Amplifier_Copilot()
         advList{end+1} = sprintf('%s ∈ [%.3g, %.3g]',vName,mn,mx);
         set(lbAdv,'String',advList);
         maskAdv = maskAdv & Perf_Table.(vName)>=mn & Perf_Table.(vName)<=mx;
-        refreshLists('adv');        % ★ 仅此处更新列表
-        % --- 进入“高级筛选流程” → 清空 4 列选择，重新从 Topo 开始 ----
+        refreshLists('adv');       
         set(lbTopo,'Value',1:numel(get(lbTopo,'String')));
         set(lbTech,'Value',1:numel(get(lbTech,'String')));
         set(lbVDD ,'Value',1:numel(get(lbVDD,'String')));
@@ -320,32 +339,32 @@ function Amplifier_Copilot()
     end
 
     function clearAdvCallback(~,~)
-        % ---------- 1. 清空高级条件 -----------------------------
+        % ---------- 1. Clear mask -----------------------------
         advList = {};
         set(lbAdv,'String',advList);
         maskAdv = true(height(Perf_Table),1);
     
-        % ---------- 2. 4 个快速过滤列表恢复到全集&全选 ----------
+        % ---------- 2. filter clear----------
         set(lbTopo,'String',topoValsAll,'Value',1:numel(topoValsAll));
         set(lbTech,'String',cellstr(num2str(techVals)),'Value',1:numel(techVals));
         set(lbVDD ,'String',cellstr(num2str(vddVals )),'Value',1:numel(vddVals ));
         set(lbCL  ,'String',cellstr(num2str(clVals  )),'Value',1:numel(clVals ));
     
-        % ---------- 3. 掩码必须同步复位！ ------------------------
+        % ---------- 3. mask reset ------------------------
         maskTopo(:) = true;
         maskTech(:) = true;
         maskVDD(:)  = true;
         maskCL(:)   = true;
-    
-        % ---------- 4. 步骤提示 √ 全部取消 -----------------------
+        maskFOM(:)  = true;  
+        set(sliderFOM,'Value',50);        
+        % ---------- 4. step reset -----------------------
         doneTopo = false;  doneTech = false;
         doneVDD  = false;  doneCL  = false;
     
-        % ---------- 5. 刷新界面 ---------------------------------
-        refreshLists('adv');      % 用全集重写列表框
-        updateLabelState();       % 4 个标题变红
-        updateMask();             % 重新组合 masterMask
-        drawScatter();            % 散点图回到“全部数据”
+        % ---------- 5. refresh ---------------------------------
+        refreshLists('adv');     
+        updateLabelState();      
+        sliderFOMCallback();  
     end
 
     function keyDeleteAdv(~,evt)
@@ -358,12 +377,46 @@ function Amplifier_Copilot()
                 v = strtrim(tk{1}); mn = str2double(tk{2}); mx = str2double(tk{3});
                 maskAdv = maskAdv & Perf_Table.(v)>=mn & Perf_Table.(v)<=mx;
             end
-            refreshLists('adv');        % ★ 删除条件后同步列表
+            refreshLists('adv');        
             doneTopo = false;  doneTech = false; doneVDD = false; doneCL = false;
             updateLabelState();updateMask(); drawScatter();
         end
     end
+    % =============================================================
+    % ------------ FOM slider callback -----------------------------
+    % =============================================================
+    function sliderFOMCallback(~,~)
+        rawValue = get(sliderFOM,'Value');
+        percent = round(rawValue / 5) * 5;      
+        percent = max(5, min(100, percent));    
+        set(sliderFOM, 'Value', percent);       
+        set(txtFOMPercent,'String',sprintf('%d%%',percent));
+        
+        baseMask = maskTopo & maskTech & maskCL & maskVDD & maskAdv;
+        tblBase = Perf_Table(baseMask,:);
+        
+        if isempty(tblBase)
+            maskFOM(:) = true;
+            updateMask(); drawScatter();
+            return;
+        end
+        
+        %  FOM_gg = gbw * gain
+        % FOM_gg = tblBase.gbw .* tblBase.gain; 
+        FOM_gg = tblBase.gbw .* (10.^(tblBase.gain/20));
 
+        % sort by Fom_gg 
+        [~,sortIdx] = sort(FOM_gg,'descend');
+        nKeep = max(1, round(length(FOM_gg) * percent/100)); 
+        keepIdx = sortIdx(1:nKeep);
+        
+        % refresh mask
+        maskFOM(:) = false;
+        baseIdx = find(baseMask);
+        maskFOM(baseIdx(keepIdx)) = true;
+        
+        updateMask(); drawScatter();
+    end
     % =============================================================
     % ------------ select-point callback  --------------------------
     % =============================================================
@@ -403,9 +456,9 @@ function Amplifier_Copilot()
 
         delete(get(tblPanel,'Children'));
 
-        rowTbl   = Perf_Table(idxOrig , cellstr(varOrder));     % 先按顺序取列
-        tblData  = row2charcell(rowTbl);                        % 转成带单位的 cell
-        colNames = cellstr(varOrder);                           % 列标题
+        rowTbl   = Perf_Table(idxOrig , cellstr(varOrder));  
+        tblData  = row2charcell(rowTbl);                     
+        colNames = cellstr(varOrder);                        
         
         uitable(tblPanel,'Units','normalized','Position',[0 0 1 1],...
                 'Data',tblData, ...
@@ -425,8 +478,8 @@ function Amplifier_Copilot()
         refreshSch();
     end
     function toggleLabelMode(~,~)
-        showWL = ~showWL;          % 翻转模式
-        refreshSch();              % 重新渲染
+        showWL = ~showWL;         
+        refreshSch();             
     end
     function refreshSch
         if ~isempty(lastIdxOrig) && isvalid(axSch)
@@ -445,9 +498,9 @@ function Amplifier_Copilot()
         if isempty(lastIdxOrig)
             warndlg('No point selected.'); return
         end
-        row = Perf_Table(lastIdxOrig,:);    % 当前行
+        row = Perf_Table(lastIdxOrig,:);   
 
-        % --------- 询问 ----------
+        % --------- msg pop up ----------
         msg = sprintf(['PERMANENTLY delete this result?\n\n',...
                        'Topo=%s  Tech=%g  VDD=%g\nRUN=%s  gen=%d  idx=%d'],...
                        row.Topo,row.Tech_nodes,row.VDD, ...
@@ -456,7 +509,7 @@ function Amplifier_Copilot()
             return
         end
 
-        % --------- 1. 计算路径（完全照搬 Get_Size_TBM_Figure） -----------
+        % --------- 1. calculate path, as same as in Get_Size_TBM_Figure.m -----------
         topo = string(row.Topo);
         tech = numeric2str(row.Tech_nodes);
         vdd  = numeric2str(row.VDD);
@@ -474,7 +527,7 @@ function Amplifier_Copilot()
         leafDir    = strjoin([topo, tech, vdd, vcm, cl, run, gen, idx], '-');
         leafPath   = fullfile(figRootDir, leafDir);
 
-        % --------- 2. 删除 Netlist_and_Figure/<leafDir> -------------------
+        % --------- 2. delete Netlist_and_Figure/<leafDir> -------------------
         if isfolder(leafPath)
             try
                 rmdir(leafPath,'s');
@@ -484,7 +537,7 @@ function Amplifier_Copilot()
             end
         end
 
-        % --------- 3. 从 Perf_and_Size_Table 的 CSV 删行 ------------------
+        % --------- 3. delete row in Perf_and_Size_Table  ------------------
         csvFiles = dir(fullfile(perfTblDir,'*.csv'));
         if isempty(csvFiles)
             warningID = 'GetPerfTable:MissingCSV';
@@ -501,39 +554,39 @@ function Amplifier_Copilot()
             end
         end
 
-    % --------- 4. 从内存 Perf_Table 删行并刷新 ------------------------
-    Perf_Table(lastIdxOrig,:) = [];       % 表删行
-    % 5 个掩码同步删行（保持原过滤状态）
+    % --------- 4. delete row in Perf_Table, then refrest ------------------------
+    Perf_Table(lastIdxOrig,:) = [];    
+ 
     maskTopo(lastIdxOrig) = [];
     maskTech(lastIdxOrig) = [];
     maskCL  (lastIdxOrig) = [];
     maskVDD (lastIdxOrig) = [];
     maskAdv (lastIdxOrig) = [];
-    lastIdxOrig = [];                     % 清空“当前选中”
+    maskFOM (lastIdxOrig) = []; 
+    lastIdxOrig = [];                 
     
-    % 重新组合 masterMask 并刷新
     masterMask = maskTopo & maskTech & maskCL & maskVDD & maskAdv;
-    drawScatter();        % 重画散点
-    cla(axSch,'reset');   % 清空示意图
+    drawScatter();       
+    cla(axSch,'reset');   
     % cla(axFig,'reset');
 
-    cla(axFig,'reset');   % 清空右侧的图形区域
-    showStartupImage(axSch,axFig);   % 重新显示启动引导图
+    cla(axFig,'reset');   
+    showStartupImage(axSch,axFig);   
 
     delete(get(tblPanel,'Children'));
     set(txtTopo,'String','');
 
     end
     % -------------------------------------------------------------
-    % 显示启动引导图 (User Guide) 到 axSch / axFig
+    % Show User Guide in axSch / axFig
     % -------------------------------------------------------------
     function showUserGuide(~,~)
         cla(axSch,'reset');
         cla(axFig,'reset');
-        showStartupImage(axSch,axFig);   % 已有的工具函数
-        delete(highlightPts(ishandle(highlightPts)));  % 移除高亮圈
-        set(txtTopo,'String','');        % 清空拓扑标题
-        lastIdxOrig = [];                % 取消当前选中
+        showStartupImage(axSch,axFig);  
+        delete(highlightPts(ishandle(highlightPts)));  
+        set(txtTopo,'String','');       
+        lastIdxOrig = [];                
     end
     
     function browseDir(~,~)
@@ -542,7 +595,7 @@ function Amplifier_Copilot()
     end
 
     function exportNetlist(~,~)
-        % ---------- 0. 基本检查 -------------------------------
+        % ---------- 0. Basic check -------------------------------
         if isempty(lastIdxOrig)
             warndlg('Pick a point before export'); return; end
         dstDir = strtrim(get(editDst,'String'));
@@ -552,7 +605,7 @@ function Amplifier_Copilot()
             try mkdir(dstDir); catch, errordlg('Unable to create new dir'); return; end
         end
     
-        % ---------- 1. 取表格字段 -----------------------------
+        % ---------- 1. Combine string -----------------------------
         row   = Perf_Table(lastIdxOrig,:);
         Topo  = char(row.Topo);
         Tech  = char(string(row.Tech_nodes));
@@ -561,12 +614,12 @@ function Amplifier_Copilot()
         CL    = char(string(row.CL));
         if ismember('RUN',Perf_Table.Properties.VariableNames)
               RUN = char(string(row.RUN));
-        else, RUN = '1';                % 如果没有 RUN 字段
+        else, RUN = '1';               
         end
         gen   = char(string(row.gen));
         idx   = char(string(row.index));
     
-        % ---------- 2. 构造源目录 -----------------------------
+        % ---------- 2. Combine path string ----------------------
         dirName = sprintf('%s-%s-%s-%s-%s', ...
                           Topo,Tech,VDD,VCM,CL);
         srcDir  = fullfile(Database_dir,Topo,dirName,'Netlist_and_Figure',[dirName,'-',RUN,'-',gen,'-',idx]);
@@ -575,10 +628,9 @@ function Amplifier_Copilot()
             errordlg({'Wrong Dir:',srcDir},'EXPORT FAILED'); return
         end
     
-        % ---------- 3. 复制 *.scs ----------------------------
-        files = dir(srcDir);                       % 1) 列举
-        files = files(~[files.isdir]);             % 2) 去掉所有子目录(含 '.' '..')
-        % ↑ 这一步就能把 "." 和 ".." 清理掉，双保险再加下一行
+        % ---------- 3. copy *.scs ----------------------------
+        files = dir(srcDir);                      
+        files = files(~[files.isdir]);            
         files = files(~ismember({files.name},{'.','..'}));
         
 
@@ -587,30 +639,29 @@ function Amplifier_Copilot()
         end
     
         nCopy      = 0;
-        copiedBest = '';                               % 保存提取出的 {...}
+        copiedBest = '';                              
 
         for f = 1:numel(files)
             srcFile = fullfile(srcDir,files(f).name);
             dstFile = fullfile(dstDir ,files(f).name);
 
             try
-                copyfile(srcFile,dstFile,'f');         % 覆盖同名文件
+                copyfile(srcFile,dstFile,'f');       
                 nCopy = nCopy + 1;
             catch ME
                 warning('EXPORT FAILED %s\n%s',srcFile,ME.message);
                 continue
             end
 
-            % ── 如果是刚复制的 txt 文件，立即解析 best_indi {...}
             if endsWith(files(f).name,'.txt','IgnoreCase',true)
                 try
                     raw = fileread(dstFile);
                     tk  = regexp(raw,'best_indi[^{}]*\{([\s\S]*?)\}','tokens','once');
                     if ~isempty(tk)
-                        copiedBest = ['{' tk{1} '}'];  % 补回最外层 {}
+                        copiedBest = ['{' tk{1} '}']; 
                     end
                 catch ME
-                    % warning('TXT parse failed: %s',ME.message);
+                    warning('TXT parse failed: %s',ME);
                 end
             end
         end
@@ -640,22 +691,19 @@ function Amplifier_Copilot()
     end
     
     function topoSearchCallback(src,~)
-        key = lower(strtrim(get(src,'String')));   % 输入关键字
+        key = lower(strtrim(get(src,'String')));  
         if isempty(key)
-            newList = topoValsAll;                 % 清空 ⇒ 显示全部
+            newList = topoValsAll;                
         else
             newList = topoValsAll(contains(lower(topoValsAll),key));
         end
 
-        % 如果无匹配则保持旧列表
         if isempty(newList)
             return;
         end
 
-        % 更新 listbox 显示并全选（可自行改成不选）
         set(lbTopo,'String',newList,'Value',1:numel(newList));
 
-        % 同步内部掩码（复用原 topoCallback）
         topoCallback();
     end
 
@@ -670,15 +718,14 @@ function Amplifier_Copilot()
     end
 
     function updateMask
-        masterMask = maskTopo & maskTech & maskCL & maskVDD & maskAdv;
-        set(hTopoSearch,'String','');          % ← 新增
-        % --------- 若过滤后无数据 → 还原为全选 -----------------
+        % masterMask = maskTopo & maskTech & maskCL & maskVDD & maskAdv;
+        masterMask = maskTopo & maskTech & maskCL & maskVDD & maskAdv & maskFOM;
+        set(hTopoSearch,'String','');    
         if ~any(masterMask)
             warndlg('No record meets current filters. All filters are reset!');
         
             maskTopo(:)=true; maskTech(:)=true; maskCL(:)=true;
-            maskVDD(:)=true;  maskAdv(:)=true; masterMask(:)=true;
-        
+            maskVDD(:)=true;  maskAdv(:)=true; maskFOM(:)=true; masterMask(:)=true;
             set(lbTopo,'String',topoValsAll,'Value',1:numel(topoValsAll));
             set(lbTech,'String',cellstr(num2str(techVals)),'Value',1:numel(techVals));
             set(lbVDD ,'String',cellstr(num2str(vddVals )),'Value',1:numel(vddVals ));
@@ -707,27 +754,27 @@ function Amplifier_Copilot()
         setState(lblCL  , doneCL  );
     end
     % =========================================================
-    % 刷新列表
-    %   level = 'adv'  → 4 列全部根据高级筛选刷新
-    %           'topo' → 已选 Topo + 高筛 →刷新 Tech/VDD/CL
-    %           'tech' → 已选 Topo/Tech + 高筛 →刷新 VDD/CL
-    %           'vdd'  → 已选 Topo/Tech/VDD + 高筛 →刷新 CL
+    % Refresh available lists based on current masks
+    %   level = 'adv'  → Only clean advanced filter → keep downstream
+    %           'topo' → clean topo but keep downstream
+    %           'tech' → clean tech but keep VDD/CL
+    %           'vdd'  → clean VDD but keep CL
     % =========================================================
     function refreshLists(level)
         switch level
-            case 'adv'                    % 纯高级筛选 → 保留下游选择
+            case 'adv'                  
                 baseMask = maskAdv;
                 todo     = ["Topo","Tech","VDD","CL"];
                 forceReset = false;
-            case 'topo'                   % Topo 变 → 下游全部复位
+            case 'topo'                  
                 baseMask = maskTopo & maskAdv;
                 todo     = ["Tech","VDD","CL"];
                 forceReset = true;
-            case 'tech'                   % Tech 变 → VDD/CL 复位
+            case 'tech'                  
                 baseMask = maskTopo & maskTech & maskAdv;
                 todo     = ["VDD","CL"];
                 forceReset = true;
-            case 'vdd'                    % VDD 变 → CL 复位
+            case 'vdd'                   
                 baseMask = maskTopo & maskTech & maskVDD & maskAdv;
                 todo     = "CL";
                 forceReset = true;
@@ -739,42 +786,41 @@ function Amplifier_Copilot()
             switch item
                 case "Topo"
                     vals = unique(tblAvail.Topo);
-                    if isempty(vals), vals = []; end % 空则让 updList 回退到 fullStr
-                    % updList(lbTopo , cellstr(sort(vals)), topoValsAll);
+                    if isempty(vals), vals = []; end 
                     updList(lbTopo, cellstr(sort(vals)), topoValsAll, forceReset);
                 case "Tech"
                     vals = unique(tblAvail.Tech_nodes);
-                    if isempty(vals), vals = []; end % 空则让 updList 回退到 fullStr
+                    if isempty(vals), vals = []; end 
 
                     updList(lbTech , cellstr(num2str(sort(vals))), cellstr(num2str(techVals)), forceReset);
                 case "VDD"
                     vals = unique(tblAvail.VDD);
-                    if isempty(vals), vals = []; end % 空则让 updList 回退到 fullStr
+                    if isempty(vals), vals = []; end 
 
                     updList(lbVDD , cellstr(num2str(sort(vals))), cellstr(num2str(vddVals)), forceReset);
                 case "CL"
                     vals = unique(tblAvail.CL);
-                    if isempty(vals), vals = []; end % 空则让 updList 回退到 fullStr
+                    if isempty(vals), vals = []; end
 
                     updList(lbCL  , cellstr(num2str(sort(vals))), cellstr(num2str(clVals)), forceReset);
             end
         end
     end
     % ------------------------------------------------------------------
-    % updList(lb , newStr , fullStr , resetSel)
-    %   • newStr  : 依据掩码算出的可用项（若空⇒使用 fullStr）
-    %   • resetSel: true  → 直接 “全选”      (用于上游变动)
-    %               false → 试图保留旧选择  (用于纯高级筛选)
-    %   –– 使用单次 set(...'String',...'Value',...) 避免 MATLAB 警告
+        % updList(lb , newStr , fullStr , resetSel)
+        %   • newStr  : Available items calculated by mask (if empty⇒use fullStr)
+        %   • resetSel: true  → Directly "select all"      (for upstream changes)
+        %               false → Try to keep old selection  (for pure advanced filter)
+        %   –– Use single set(...'String',...'Value',...) to avoid MATLAB warnings
     % ------------------------------------------------------------------
     function updList(lb,newStr,fullStr,resetSel)
         if isempty(newStr), newStr = fullStr; end
     
         if resetSel
-            newVal = 1:numel(newStr);              % 全选
+            newVal = 1:numel(newStr);              
         else
             oldStr = get(lb,'String');
-            if isempty(oldStr), oldStr = {''}; end % 避免空
+            if isempty(oldStr), oldStr = {''}; end 
             oldVal = get(lb,'Value');
             oldSel = oldStr(oldVal);
             [~,newVal] = ismember(oldSel,newStr);
@@ -782,14 +828,14 @@ function Amplifier_Copilot()
             if isempty(newVal), newVal = 1:numel(newStr); end
         end
     
-        newVal = min(newVal, numel(newStr));       % 双保险
+        newVal = min(newVal, numel(newStr));     
         set(lb,'String',newStr,'Value',newVal);
     end
 
     % -------------------------------------------------------------
-    % 找到距鼠标 (xClick,yClick) 最近的行
-    %   • 自动判断该散点对的 X/Y 是否为对数坐标
-    %   • 距离在“坐标轴归一化”后计算，避免量纲差
+        % Find the row closest to the mouse (xClick, yClick)
+        %   • Automatically determine whether the X/Y of the scatter pair is logarithmic axis
+        %   • Distance is calculated after "axis normalization" to avoid unit difference
     % -------------------------------------------------------------
     function idxLocal = findNearestRow(xClick,yClick)
         tblShow = Perf_Table(masterMask,:);
@@ -799,11 +845,11 @@ function Amplifier_Copilot()
             ax = scatterAxes(p);
             if ~isvalid(ax), continue; end
 
-            % ---- 取 X/Y 数据列 ----
+            % ---- Get X/Y data columns ----
             vx = tblShow.(var_pairs{p}{1});
             vy = tblShow.(var_pairs{p}{2});
 
-            % ---- 若坐标轴为对数 → 取 log10 ----
+            % ---- If axis is logarithmic → take log10 ----
             if strcmp(ax.XScale,'log')
                 vx        = log10(max(vx, realmin));
                 xClickAdj = log10(max(xClick, realmin));
@@ -817,7 +863,7 @@ function Amplifier_Copilot()
                 yClickAdj = yClick;
             end
 
-            % ---- 用“轴范围”归一化后求距离 ----
+            % ---- Calculate distance after normalization by axis range ----
             dx = (vx - xClickAdj) ./ range(vx);
             dy = (vy - yClickAdj) ./ range(vy);
             [dm,loc] = min(hypot(dx,dy));
@@ -828,36 +874,36 @@ function Amplifier_Copilot()
             end
         end
 
-        % ---- 距离过大则视为没点被选中 (可自行调整 0.06) ----
+        % ---- If the distance is too large, treat as no point selected (can adjust 0.06) ----
         if best > 0.06
             idxLocal = [];
         end
     end
     % =============================================================
-    %  内部工具：尝试加载数据库，失败则弹出浏览框
-    %  返回：
-    %     dir   —— 被选中的数据库根目录
-    %     tbl   —— 调用 Get_Perf_Table 成功返回的 Perf_Table
+    %  Internal tool: try to load database, if failed then pop up browse dialog
+    %  Return:
+    %     dir   —— selected database root directory
+    %     tbl   —— Perf_Table returned by calling Get_Perf_Table successfully
     % =============================================================
     function [dir , tbl] = loadDatabase(startDir)
-        dir = startDir;                      % 初始猜测
+        dir = startDir;                      % Initial guess
         while true
             try
-                tbl = Get_Perf_Table(dir);   % 尝试读取
-                break                        % 成功→跳出循环
-            catch ME                         % 失败→让用户重新选
+                tbl = Get_Perf_Table(dir);   % Try to read
+                break                        % Success→break loop
+            catch ME                         % Failure→let user reselect
                 choice = questdlg( ...
-                    sprintf(['无法在\n%s\n加载数据库：\n%s\n\n', ...
-                             '是否浏览其它目录？'], dir, ME.message), ...
-                    '数据库不可用','浏览...','退出','浏览...');
-                if ~strcmp(choice,'浏览...')
-                    error('AmplifierCopilot:NoDB','未找到有效数据库，程序终止');
+                    sprintf(['Failed to load database at\n%s\n:\n%s\n\n', ...
+                             'Browse another directory?'], dir, ME.message), ...
+                    'Database unavailable','Browse...','Exit','Browse...');
+                if ~strcmp(choice,'Browse...')
+                    error('AmplifierCopilot:NoDB','No valid database found, program terminated');
                 end
-                newDir = uigetdir(pwd,'请选择数据库根目录');
-                if newDir==0                % 用户点取消
-                    error('AmplifierCopilot:NoDB','未找到有效数据库，程序终止');
+                newDir = uigetdir(pwd,'Please select database root directory');
+                if newDir==0                % User clicked cancel
+                    error('AmplifierCopilot:NoDB','No valid database found, program terminated');
                 end
-                dir = newDir;               % 继续下一轮尝试
+                dir = newDir;               % Continue next attempt
             end
         end
     end
@@ -868,31 +914,31 @@ function Amplifier_Copilot()
         if isempty(lastIdxOrig)
             warndlg('Pick a point first'); return; end
     
-        % ====== ① 把当前状态"快照"成本地副本 ======================
-        myIdx      = lastIdxOrig;   % ← 固定住所选行
-        myFontSize = LabelFontSize; % ← 自己的字号
-        myShowWL   = showWL;        % ← 自己的 WL/GMFT 模式
+        % ====== ① Snapshot current state as local copy ======================
+        myIdx      = lastIdxOrig;   % ← Fix selected row
+        myFontSize = LabelFontSize; % ← Own font size
+        myShowWL   = showWL;        % ← Own WL/GMFT mode
     
-        % ====== ② 布局参数（可再调） ==============================
+        % ====== ② Layout parameters (can be adjusted) ==============================
         txtH = 0.05;  tblH = 0.12;  gap = 0.01;
         axH  = 1 - txtH - tblH - 2*gap;
     
-        % ====== ③ 创建窗口骨架 ====================================
+        % ====== ③ Create window skeleton ====================================
         popFig = figure('Name','Schematic (pop-out)','NumberTitle','off',...
                         'Units','pixels','Position',[200 80 1500 600]);
     
-        % ---- 顶部拓扑名 ------------------------------------------
+        % ---- Top topology name ------------------------------------------
         uicontrol(popFig,'Style','text','Units','normalized',...
                   'Position',[0 1-txtH 0.9 txtH],...
                   'String',char(Perf_Table.Topo(myIdx)),...
                   'FontWeight','bold','FontSize',12,...
                   'HorizontalAlignment','center');
     
-        % ---- schematic 轴 ----------------------------------------
+        % ---- schematic axis ----------------------------------------
         popAx = axes(popFig,'Units','normalized',...
                      'Position',[0 tblH+gap 0.9 axH]);
     
-        % ---- 底部性能表格 ----------------------------------------
+        % ---- Bottom performance table ----------------------------------------
         tblPanelPop = uipanel(popFig,'Units','normalized',...
                               'Position',[0 0 0.9 tblH]);
     
@@ -901,7 +947,7 @@ function Amplifier_Copilot()
         uitable(tblPanelPop,'Units','normalized','Position',[0 0 1 1],...
                 'Data',tblData,'ColumnName',cellstr(varOrder),'RowName',[]);
     
-        % ====== ④ 右侧本地按钮（只改自己的变量） ===================
+        % ====== ④ Right local buttons (only change own variables) ===================
         uicontrol(popFig,'Style','pushbutton','Units','normalized',...
                   'Position',[0.92 0.55 0.07 0.18],'String','A+','FontWeight','bold',...
                   'Callback',@(~,~)changeFont(+1));
@@ -915,11 +961,11 @@ function Amplifier_Copilot()
                   'String','W,L↔gm,ft','FontSize',8,...
                   'Callback',@toggleMode);
     
-        % ====== ⑤ 首次绘制 ========================================
+        % ====== ⑤ First draw ========================================
         redraw();
     
         % ----------------------------------------------------------
-        % 内部工具函数（全部使用 "my*" 变量）
+        % Internal helper functions (all use "my*" variables)
         % ----------------------------------------------------------
         function redraw
             cla(popAx,'reset');
@@ -941,7 +987,7 @@ end
 
 
 
-%% 以下是子函数
+%% The following are sub-functions
 
 function showStartupImage(targetAxes1, targetAxes2)
     startupImgFile1 = 'Startup_UG_1.png';
@@ -978,65 +1024,65 @@ function C = row2charcell(Trow)
     C        = cell(size(vals));
 
     for k = 1:numel(vals)
-        vName = varNames{k};  % 获取变量名
-        v = vals{k};          % 获取变量值
+        vName = varNames{k};  % Get variable name
+        v = vals{k};          % Get variable value
 
         if isnumeric(v) || islogical(v)
-            % --- 首先处理特殊数值 ---
+            % --- First handle special values ---
             if isempty(v), C{k}=''; continue; end
             if isnan(v),   C{k}='NaN'; continue; end
             if isinf(v),   C{k}='Inf'; continue; end
 
-            % --- 使用 switch 根据变量名应用不同格式和单位 ---
+            % --- Use switch to apply different formats and units according to variable name ---
             switch vName
-                % --- 电压相关 (V) ---
+                % --- Voltage related (V) ---
                 case {'VDD', 'VCM'}
                     C{k} = sprintf('%.2f V', v);
-                case {'noise', 'vos'} % 噪声和失调电压，通常较小
+                case {'noise', 'vos'} % Noise and offset voltage, usually small
                     C{k} = formatWithEngUnit(v, 'V');
                 
-                % --- 增益/抑制比相关 (dB) ---
+                % --- Gain/suppression ratio related (dB) ---
                 case {'gain', 'CMRR', 'PSRR'}
                     C{k} = sprintf('%.1f dB', v);
                 
-                % --- 频率/带宽/速率相关 ---
+                % --- Frequency/bandwidth/rate related ---
                 case 'gbw'
                     C{k} = formatWithEngUnit(v, 'Hz');
-                case 'SR' % 压摆率单位通常是 V/us，直接格式化
+                case 'SR' % Slew rate unit is usually V/us, format directly
                     C{k} = formatWithEngUnit(v,'V/s');
                 
-                % --- 温度特性  ---
+                % --- Temperature characteristics  ---
                 case 'tc'
                     C{k} = formatWithEngUnit(v, 'V/°C');
-                % --- 时间相关 (s) ---
+                % --- Time related (s) ---
                 case {'settlingTime'}
                     C{k} = formatWithEngUnit(v, 's');
-                % --- 电流 (A) ---
+                % --- Current (A) ---
                 case 'ivdd_27'
                     C{k} = formatWithEngUnit(v, 'A');
 
-                % --- 面积 (m^2) ---
-                case 'chip_area' % 假定单位是 um^2
+                % --- Area (m^2) ---
+                case 'chip_area' % Assume unit is um^2
                     C{k} = sprintf('%.0f*%.0f µm^2', v,v);
 
-                % --- 其他有明确单位的量 ---
-                case 'pm' % 相位裕度
+                % --- Other quantities with clear units ---
+                case 'pm' % Phase margin
                     C{k} = sprintf('%.1f °', v);
                 case 'Tech_nodes'
                     C{k} = sprintf('%d nm', v);
-                case 'CL' % 容性负载
+                case 'CL' % Capacitive load
                     C{k} = sprintf('%.3f pF', v);
 
-                % --- 无单位或纯数字的量 (整数格式) ---
+                % --- Quantities without units or pure numbers (integer format) ---
                 case {'gen', 'index', 'RUN'}
                     C{k} = sprintf('%d', v);
                 
-                % --- 默认情况: 无特定单位的量 (如 FOM, fitness, d_settle) ---
+                % --- Default: quantities without specific units (such as FOM, fitness, d_settle) ---
                 otherwise
-                    C{k} = sprintf('%.3g', v); % 使用 .3g 格式更通用
+                    C{k} = sprintf('%.3g', v); % Use .3g format for generality
             end
         else
-            % --- 对于非数值类型 (如 Topo)，直接转换为字符 ---
+            % --- For non-numeric types (such as Topo), directly convert to char ---
             C{k} = char(string(v));
         end
     end
@@ -1046,23 +1092,23 @@ end
 % Helper Function: Format number with engineering unit (M, k, m, µ, n, etc.)
 % =============================================================
 function str = formatWithEngUnit(val, baseUnit)
-    % 输入:
-    %   val: 数值
-    %   baseUnit: 基础单位字符串, e.g., 'V', 'Hz', 's', 'A'
+    % Input:
+    %   val: value
+    %   baseUnit: base unit string, e.g., 'V', 'Hz', 's', 'A'
     
     if val == 0
         str = sprintf('0 %s', baseUnit);
         return;
     end
 
-    % 工程前缀和对应的数量级
+    % Engineering prefixes and corresponding orders of magnitude
     prefixes = {'Y', 'Z', 'E', 'P', 'T', 'G', 'M', 'k', '', 'm', 'µ', 'n', 'p', 'f', 'a', 'z', 'y'};
     exponents = [24, 21, 18, 15, 12, 9, 6, 3, 0, -3, -6, -9, -12, -15, -18, -21, -24];
     
-    % 计算数值的指数
+    % Calculate the exponent of the value
     val_exp = floor(log10(abs(val)));
     
-    % 找到最接近的工程指数 (3的倍数)
+    % Find the closest engineering exponent (multiple of 3)
     best_exp_idx = 1;
     min_diff = inf;
     for i = 1:length(exponents)
@@ -1073,18 +1119,18 @@ function str = formatWithEngUnit(val, baseUnit)
         end
     end
     
-    % 如果数值本身在 [1, 1000) 范围内，则不使用前缀
+    % If the value itself is in the range [1, 1000), do not use a prefix
     if val_exp >= 0 && val_exp < 3
         best_exp_idx = find(exponents == 0);
     end
 
-    % 使用找到的最佳指数进行换算
+    % Use the found best exponent for conversion
     p = prefixes{best_exp_idx};
     exp_val = exponents(best_exp_idx);
     
     scaled_val = val / (10^exp_val);
     
-    % 根据数值大小决定小数点位数
+    % Determine the number of decimal places based on the value size
     if abs(scaled_val) >= 100
         fmt = '%.1f';
     elseif abs(scaled_val) >= 10
@@ -1093,7 +1139,7 @@ function str = formatWithEngUnit(val, baseUnit)
         fmt = '%.3f';
     end
     
-    % 组合成最终字符串
+    % Combine into the final string
     str = sprintf([fmt ' %s%s'], scaled_val, p, baseUnit);
 end
 
