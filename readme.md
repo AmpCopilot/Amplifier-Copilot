@@ -13,7 +13,8 @@
   **Open-source • Production-Ready • Tape-out Proven**
   
   [Quick Start](#-quick-start) • [Features](#-features) • [Documentation](#-development-guide) • [Contributing](#-requesting-new-features)
-  
+
+  • Readme in zh_CN [点击跳转到简体中文](./README.zh-CN.md)
   <br>
   
   <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="600"/>
@@ -24,14 +25,16 @@
 
 ## 📋 Table of Contents
 
-- [✨ Features](#-features)
-- [🚀 Quick Start](#-quick-start)
-- [💻 Compatibility](#-compatibility)
-- [🔧 Development Guide](#-development-guide)
-- [💡 Requesting New Features](#-requesting-new-features)
-- [📄 License](#-license)
-- [📬 Contact](#-contact)
-- [📚 Related Publications](#-related-publications)
+- [Amplifier-Copilot](#amplifier-copilot)
+  - [📋 Table of Contents](#-table-of-contents)
+  - [✨ Features](#-features)
+  - [🚀 Quick Start](#-quick-start)
+  - [💻 Compatibility](#-compatibility)
+  - [🔧 Development Guide](#-development-guide)
+  - [💡 Requesting New Features](#-requesting-new-features)
+  - [📄 License](#-license)
+  - [📬 Contact](#-contact)
+  - [📚 Related Publications](#-related-publications)
 ---
 
 ## ✨ Features
