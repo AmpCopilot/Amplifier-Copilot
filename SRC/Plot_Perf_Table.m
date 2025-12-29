@@ -89,6 +89,8 @@ end
 
 % Dedicated legend row ----------------------------------------------------
 axLeg = nexttile(tlay,nPlot+1);  axis(axLeg,'off');
-legend(axLeg, hProxy, strrep(legStr,'_','\_'), ...
-       'NumColumns',2, 'Location','south', 'Box','on');
+legend1 = legend(axLeg, hProxy, strrep(legStr,'_','\_'), ...
+       'NumColumns',2, 'Location','south', 'Box','off','FontSize',6.5);
+set(legend1,...
+    'Position',[-0.0607632120994672 0.00476816074188562 1.20352250489237 0.171947449768161]);
 end
