@@ -12,7 +12,7 @@
   
   **• 开源免费  • 投片验证**  
   • [快速上手](#-快速上手) • [功能亮点](#-功能亮点) • [开发指南](#-开发指南) 
-  
+  • English README →[Click to jump](./README.en.md)
   <br>
   
   <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="600"/>
