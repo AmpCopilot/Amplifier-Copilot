@@ -44,8 +44,8 @@
 <td width="50%">
 
 ### 🎯 Comprehensive Design Space
-- **22** distinct amplifier topologies
-- **4000+** pre-characterized netlists
+- **23** distinct amplifier topologies
+- **5000** pre-characterized netlists
 - Coverage from **20-170 dB** gain
 - Bandwidth range: **100 kHz - 10 GHz**
 
@@ -101,6 +101,20 @@
 - **🔜 Coming Soon (Next Week)**  
   Adding **Rail-to-Rail, Class-AB** operational amplifier topologies
 
+
+### 🎆 v2026.01.01 - New Year's Release
+
+- **Cadence SKILL Script**
+  Introduced a new script to export netlists directly back to **Cadence ADE L**'s variables, streamlining the verification workflow
+
+- **New Topology Available**
+  Added support for **Rail-to-Rail** topology
+
+- **Database**
+  Expanded the dataset to **5,000 design points**, providing higher resolution for design space exploration
+
+- **MATLAB GUI**
+  Add slider and data filter 
 </details>
 
 
