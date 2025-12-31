@@ -43,7 +43,7 @@
 <tr>
 <td width="50%">
 
-### 🎯 Comprehensive Design Space
+### 🎯  Design Space
 - **23** distinct amplifier topologies
 - **5000** pre-characterized netlists
 - Coverage from **20-170 dB** gain
