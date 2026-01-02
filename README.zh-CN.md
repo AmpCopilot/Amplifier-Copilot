@@ -12,7 +12,7 @@
   
   **• 开源免费  • 投片验证**  
   • [快速上手](#-快速上手) • [功能亮点](#-功能亮点) • [开发指南](#-开发指南) 
-  • English README →[Click to jump](./README.en.md)
+  • English README →[Click to jump](./readme.md)
   <br>
   
   <img src="Pic_for_readme/Main_GUI.png" alt="Amplifier-Copilot Main GUI" width="600"/>
@@ -83,6 +83,11 @@
 <summary><b>📅 更新日志 & 发布说明</b></summary>
 <br>
 
+**下一个版本更新预告**: 
+  - 新加入的数据点画出来的性能曲线将变成暗黑风格，更加和谐的同时更加容易阅读。
+  - 放大器输入范围将成为优化指标并且会在性能曲线中画出来，替代掉原本没啥用的零极点画图。
+
+
 ### 🎄 v2025.12.24 - 平安夜更新
 
 - **扩展数据库** ：新增 **40nm 和 65nm 工艺节点**，总量达 **4000+ 设计点**
@@ -92,7 +97,7 @@
 ### 🎆 v2026.1.1 - 元旦更新
 
 - **新增SKILL脚本** ：可以从网表一键导回到ADEL仿真器的变量
-- **新增轨到轨拓扑**：请注意低电压的跨导线性环可能不正常，有些点不太好，要自行辨别  
+- **新增轨到轨拓扑**：请注意低电压的跨导线性环可能不正常，R2R拓扑的TC被我借来跑VCM输入的优化，X轴不再是温度而是VCM输入电压，Y轴变成gm_total  
 - **数据库拓展到5000点**  
 
 
@@ -118,6 +123,8 @@
 ```bash
 git clone https://github.com/AmpCopilot/Amplifier-Copilot.git
 ```
+如果你在中国可以尝试我们的Gitee镜像，下载更快而且不用翻墙。
+https://gitee.com/AmpCopilot/Amplifier-Copilot
 
 <p align="center">
   <img src="Pic_for_readme/Startup.png" alt="Download Options" width="500"/>

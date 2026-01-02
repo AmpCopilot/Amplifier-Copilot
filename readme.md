@@ -87,6 +87,11 @@
 <summary><b>📅 Update Log & Release Notes</b></summary>
 <br>
 
+**Update Comming Soon**: 
+  - Newly add data's performance plot will be change to dark sytle.
+  - Add VCM range plot to replace old 'Poles&Zeros' plot.
+
+
 ### 🎄 v2025.12.24 - Christmas Eve Special Release
 
 - **Expanded Database Coverage**  
@@ -108,7 +113,7 @@
   Introduced a new script to export netlists directly back to **Cadence ADE L**'s variables, streamlining the verification workflow
 
 - **New Topology Available**
-  Added support for **Rail-to-Rail** topology
+  Added support for **Rail-to-Rail** topology. Please note that the transconductance linear loop may not function properly at low voltages. The TC of the R2R topology is used here to optimize the VCM input. The X-axis now represents the VCM input voltage instead of temperature, and the Y-axis represents gm_total.
 
 - **Database**
   Expanded the dataset to **5,000 design points**, providing higher resolution for design space exploration
@@ -137,6 +142,9 @@ Clone the repository or download as ZIP:
 ```bash
 git clone https://github.com/AmpCopilot/Amplifier-Copilot.git
 ```
+
+If you are in China, try our Gitee mirror. 
+https://gitee.com/AmpCopilot/Amplifier-Copilot
 
 <p align="center">
   <img src="Pic_for_readme/Startup.png" alt="Download Options" width="500"/>
