@@ -46,7 +46,9 @@ function Amplifier_Copilot()
     
     mainFig = figure('Name','Amplifier-Copilot v25.1.1 (Github: Amplifier-Copilot)','Units','pixels',...
         'OuterPosition',[left bot figW figH],'Resize','on');
-    
+    if ~isMATLABReleaseOlderThan("R2024b")
+        mainFig.Theme = "dark";
+    end
     panelL = uipanel(mainFig,'Units','normalized','Position',[0   0 0.10 1]);
     panelM = uipanel(mainFig,'Units','normalized','Position',[0.10 0 0.25 1]);
     panelR = uipanel(mainFig,'Units','normalized','Position',[0.35 0 0.65 1]);
