@@ -11,7 +11,9 @@
   [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey.svg)]()
   
   **Open-source • Production-Ready • Tape-out Proven**
+
   **Try Online Demo: [Click Here](http://121.43.242.223:8501/)**
+
   [Quick Start](#-quick-start) • [Features](#-features) • [Documentation](#-development-guide) • [Contributing](#-requesting-new-features)
 
   • Readme in zh_CN [点击跳转到简体中文](./README.zh-CN.md)
@@ -125,6 +127,7 @@
 
 ## 🚀 Quick Start
 If you dont want to install locally, try our online demo: [Click Here](http://121.43.242.223:8501/)
+
 We provide both video and text-based user guides to help you get started quickly:
 
 **🎬 Video Tutorial:** [`Pic_for_readme/Copilot_Video_UG.mp4`](Pic_for_readme/Copilot_Video_UG.mp4)
