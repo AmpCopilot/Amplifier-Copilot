@@ -11,6 +11,12 @@
   [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey.svg)]()
   
   **• 开源免费  • 投片验证**  
+  <a href="http://121.43.242.223:8501/">
+    <img src="https://img.shields.io/badge/Web%20Copilot-Launch%20Online-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Web Copilot"/>
+  </a>
+  <br>
+  **网页版功能齐全，先体验再下载。**
+  
   • [快速上手](#-快速上手) • [功能亮点](#-功能亮点) • [开发指南](#-开发指南) 
   • English README →[Click to jump](./readme.md)
   <br>
@@ -25,6 +31,7 @@
 
 - [Amplifier-Copilot 中文说明](#amplifier-copilot-中文说明)
   - [📋 目录](#-目录)
+  - [🌐 在线版与 AI 助手](#-在线版与-ai-助手)
   - [✨ 功能亮点](#-功能亮点)
   - [🚀 快速上手](#-快速上手)
   - [💻 兼容性](#-兼容性)
@@ -34,6 +41,19 @@
   - [📬 联系方式](#-联系方式)
   - [📚 相关论文](#-相关论文)
 ---
+
+## 🌐 在线版与 AI 助手
+
+之前我们只提供 MATLAB 版本，数据库不断变大；而 GitHub 在墙外，国内下载和更新都很不方便。
+为了解决这个问题，我们把 MATLAB 工具的所有功能搬到网站上，先在线快速上手，满意再下载。
+
+**新功能：** 网站已接入大模型 API，可通过对话快速获得放大器设计，不需要手动选点。
+
+<p align="center">
+  <a href="http://121.43.242.223:8501/">
+    <img src="https://img.shields.io/badge/Web%20Copilot-Launch%20Online-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Web Copilot"/>
+  </a>
+</p>
 
 ## ✨ 功能亮点
 
@@ -64,6 +84,8 @@
 ### 🆓 开放与易用
 - 完全**免费开源**
 - 只要 **MATLAB** 本体
+- 提供**网页版**，无需本地安装即可体验
+- 支持**大模型对话**快速得到放大器设计
 - 联动**Cadence**设计流程
 
 </td>
@@ -105,6 +127,7 @@
 
 
 ## 🚀 快速上手
+如果不想本地安装，可以先用网页版（含大模型对话）：[在线体验](http://121.43.242.223:8501/)
 
 有视频和文字两种用户指南：
 

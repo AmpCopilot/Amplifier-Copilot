@@ -12,7 +12,12 @@
   
   **Open-source • Production-Ready • Tape-out Proven**
 
-  **Try Online Demo: [Click Here](http://121.43.242.223:8501/)**
+  <a href="http://121.43.242.223:8501/">
+    <img src="https://img.shields.io/badge/Web%20Copilot-Launch%20Online-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Web Copilot"/>
+  </a>
+  <br>
+  
+  **Full web version available - try first, download later.**
 
   [Quick Start](#-quick-start) • [Features](#-features) • [Documentation](#-development-guide) • [Contributing](#-requesting-new-features)
 
@@ -29,6 +34,7 @@
 
 - [Amplifier-Copilot](#amplifier-copilot)
   - [📋 Table of Contents](#-table-of-contents)
+  - [🌐 Web Copilot & AI Assistant](#-web-copilot--ai-assistant)
   - [✨ Features](#-features)
   - [🚀 Quick Start](#-quick-start)
   - [💻 Compatibility](#-compatibility)
@@ -38,6 +44,19 @@
   - [📬 Contact](#-contact)
   - [📚 Related Publications](#-related-publications)
 ---
+
+## 🌐 Web Copilot & AI Assistant
+
+The original MATLAB-only tool grew into a large database. With GitHub access limited in some regions, downloads and updates became difficult.
+To solve this, all MATLAB tool features are now available on the website so you can explore designs immediately and download only after you are satisfied.
+
+**New:** The web version now connects to an LLM API. Describe your specs in chat and get amplifier designs directly - no manual point selection.
+
+<p align="center">
+  <a href="http://121.43.242.223:8501/">
+    <img src="https://img.shields.io/badge/Web%20Copilot-Launch%20Online-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Web Copilot"/>
+  </a>
+</p>
 
 ## ✨ Features
 
@@ -69,6 +88,8 @@
 - Completely **free and open-source**
 - Built with **MATLAB** 
 - No additional toolboxes required
+- Full **web version** for quick try-out (no install)
+- **LLM chat assistant** for amplifier design (web)
 - Link to Cadence design flow
 
 </td>
@@ -126,7 +147,7 @@
 
 
 ## 🚀 Quick Start
-If you dont want to install locally, try our online demo: [Click Here](http://121.43.242.223:8501/)
+If you don't want to install locally, start with the full web version (includes LLM chat): [Launch Online](http://121.43.242.223:8501/)
 
 We provide both video and text-based user guides to help you get started quickly:
 
