@@ -12,7 +12,7 @@
   
   **Open-source • Production-Ready • Tape-out Proven**
 
-  <a href="http://121.43.242.223:8501/">
+  <a href="www.analogcopilot.com">
     <img src="https://img.shields.io/badge/Web%20Copilot-Launch%20Online-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Web Copilot"/>
   </a>
   <br>
@@ -34,7 +34,7 @@
 
 - [Amplifier-Copilot](#amplifier-copilot)
   - [📋 Table of Contents](#-table-of-contents)
-  - [🌐 Web Copilot & AI Assistant](#-web-copilot--ai-assistant)
+  - [🌐 Web Copilot \& AI Assistant](#-web-copilot--ai-assistant)
   - [✨ Features](#-features)
   - [🚀 Quick Start](#-quick-start)
   - [💻 Compatibility](#-compatibility)
@@ -53,7 +53,7 @@ To solve this, all MATLAB tool features are now available on the website so you 
 **New:** The web version now connects to an LLM API. Describe your specs in chat and get amplifier designs directly - no manual point selection.
 
 <p align="center">
-  <a href="http://121.43.242.223:8501/">
+  <a href="www.analogcopilot.com">
     <img src="https://img.shields.io/badge/Web%20Copilot-Launch%20Online-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Web Copilot"/>
   </a>
 </p>
@@ -147,7 +147,7 @@ To solve this, all MATLAB tool features are now available on the website so you 
 
 
 ## 🚀 Quick Start
-If you don't want to install locally, start with the full web version (includes LLM chat): [Launch Online](http://121.43.242.223:8501/)
+If you don't want to install locally, start with the full web version (includes LLM chat): [Launch Online](www.analogcopilot.com)
 
 We provide both video and text-based user guides to help you get started quickly:
 
