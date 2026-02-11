@@ -5,20 +5,20 @@
  // Design view name: schematic  
  simulator lang=spectre  
  global 0  
- parameters _EXPR_2=nil MOSFET_10_1_L_gm2_PMOS=0.2918296u MOSFET_10_1_M_gm2_PMOS=12.0 \ 
- MOSFET_10_1_W_gm2_PMOS=0.9594015u MOSFET_11_1_L_gmf2_PMOS=0.1250787u \ 
- MOSFET_11_1_M_gmf2_PMOS=24.0 MOSFET_11_1_W_gmf2_PMOS=1.0u \ 
- MOSFET_23_1_L_gm3_NMOS=0.32u MOSFET_23_1_M_gm3_NMOS=30.0 \ 
- MOSFET_23_1_W_gm3_NMOS=1.0u MOSFET_8_2_L_gm1_PMOS=0.12u \ 
- MOSFET_8_2_M_gm1_PMOS=30.0 MOSFET_8_2_W_gm1_PMOS=1.0u \ 
- MOSFET_0_8_L_BIASCM_PMOS=0.85u MOSFET_0_8_M_BIASCM_PMOS=7.0 \ 
- MOSFET_0_8_W_BIASCM_PMOS=1.0u MOSFET_17_7_L_BIASCM_NMOS=0.85u \ 
- MOSFET_17_7_M_BIASCM_NMOS=1.0 MOSFET_17_7_W_BIASCM_NMOS=0.805784u \ 
- MOSFET_21_2_L_LOAD2_NMOS=0.7231379u MOSFET_21_2_M_LOAD2_NMOS=30.0 \ 
- MOSFET_21_2_W_LOAD2_NMOS=0.788847u CAPACITOR_0=2.413749p CAPACITOR_1=0.08474644p \ 
- CURRENT_0_BIAS=12.11845u CLOAD=10p VCM=0.3 VDD=0.9 
- include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/spectre_22model/crn22ull_1d8_elk_v1d3_1p1_shrink0d855_embedded_usage.scs" section=FSMacro_MOS_MOSCAP 
-include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/spectre_22model/crn22ull_1d8_elk_v1d3_1p1_shrink0d855_embedded_usage.scs" section=pre_simu 
+ parameters _EXPR_2=nil MOSFET_10_1_L_gm2_PMOS=0.1u MOSFET_10_1_M_gm2_PMOS=4.0 \ 
+ MOSFET_10_1_W_gm2_PMOS=0.9u MOSFET_11_1_L_gmf2_PMOS=0.5u \ 
+ MOSFET_11_1_M_gmf2_PMOS=30 MOSFET_11_1_W_gmf2_PMOS=1.0u \ 
+ MOSFET_23_1_L_gm3_NMOS=0.1u MOSFET_23_1_M_gm3_NMOS=23 \ 
+ MOSFET_23_1_W_gm3_NMOS=0.8u MOSFET_8_2_L_gm1_PMOS=30n \ 
+ MOSFET_8_2_M_gm1_PMOS=30 MOSFET_8_2_W_gm1_PMOS=0.6u \ 
+ MOSFET_0_8_L_BIASCM_PMOS=1.0u MOSFET_0_8_M_BIASCM_PMOS=30 \ 
+ MOSFET_0_8_W_BIASCM_PMOS=1.0u MOSFET_17_7_L_BIASCM_NMOS=0.9u \ 
+ MOSFET_17_7_M_BIASCM_NMOS=30 MOSFET_17_7_W_BIASCM_NMOS=1.0u \ 
+ MOSFET_21_2_L_LOAD2_NMOS=0.8u MOSFET_21_2_M_LOAD2_NMOS=9.0 \ 
+ MOSFET_21_2_W_LOAD2_NMOS=1.0u CAPACITOR_0=2.0p CAPACITOR_1=0.08p \ 
+ CURRENT_0_BIAS=5.4u CLOAD=10p VCM=0.3 VDD=0.9 
+ include "/home/soc/zhihc21/7_Amp_complier/OTA_Compiler_v260103_try/Process_Library/22nm_0p9V/models/crn22ull_1d8_elk_v1d3_1p1_shrink0d855_embedded_usage.scs" section=FSMacro_MOS_MOSCAP 
+include "/home/soc/zhihc21/7_Amp_complier/OTA_Compiler_v260103_try/Process_Library/22nm_0p9V/models/crn22ull_1d8_elk_v1d3_1p1_shrink0d855_embedded_usage.scs" section=pre_simu 
 // Library name: TSMC22ULL_Std_AMP_LIB  
  // Cell name: Leung_NMCF_Pin_3  
  // View name: schematic  

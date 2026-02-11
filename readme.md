@@ -65,8 +65,8 @@ To solve this, all MATLAB tool features are now available on the website so you 
 <td width="50%">
 
 ### 🎯  Design Space
-- **23** distinct amplifier topologies
-- **5000** pre-characterized netlists
+- **25** distinct amplifier topologies
+- **7400+** pre-characterized netlists
 - Coverage from **20-170 dB** gain
 - Bandwidth range: **100 kHz - 10 GHz**
 
@@ -113,6 +113,17 @@ To solve this, all MATLAB tool features are now available on the website so you 
 **Update Comming Soon**: 
   - Newly add data's performance plot will be change to dark sytle.
   - Add VCM range plot to replace old 'Poles&Zeros' plot.
+
+### 🗂️ v2026.02.11 - Database Refresh
+
+- **Larger Database Coverage**  
+  Expanded `Database/` to **7400+ design points** for broader design-space exploration
+
+- **Topology Coverage Sync**  
+  Updated and curated data across **25 amplifier topologies**
+
+- **Data Cleanup & Regeneration**  
+  Synchronized refreshed netlists and performance artifacts, with obsolete records removed
 
 
 ### 🎄 v2025.12.24 - Christmas Eve Special Release

@@ -5,25 +5,25 @@
  // Design view name: schematic  
  simulator lang=spectre  
  global 0  
- parameters _EXPR_2=PULSE_WIDTH*10+1u RESISTOR_0=6.13k RESISTOR_2=10.5k \ 
- MOSFET_0_1_L_LOAD_NMOS=1.56u MOSFET_0_1_M_LOAD_NMOS=8.0 \ 
- MOSFET_0_1_W_LOAD_NMOS=1.79u MOSFET_10_1_L_gm1_PMOS=0.82u \ 
- MOSFET_10_1_M_gm1_PMOS=15.0 MOSFET_10_1_W_gm1_PMOS=1.97u \ 
- MOSFET_14_1_L_BIASCM_PMOS=0.3u MOSFET_14_1_M_BIASCM_PMOS=1.0 \ 
- MOSFET_14_1_W_BIASCM_PMOS=0.12u MOSFET_2_1_L_gm2_PMOS=0.06u \ 
- MOSFET_2_1_M_gm2_PMOS=4.0 MOSFET_2_1_W_gm2_PMOS=1.66u \ 
- MOSFET_4_1_L_gm3_NMOS=2.76u MOSFET_4_1_M_gm3_NMOS=1.0 \ 
- MOSFET_4_1_W_gm3_NMOS=1.38u MOSFET_6_1_L_BIASCM_PMOS=0.5u \ 
- MOSFET_6_1_M_BIASCM_NMOS=16.0 MOSFET_6_1_M_BIASCM_PMOS=1.0 \ 
- MOSFET_6_1_W_BIASCM_PMOS=0.894u CURRENT_0_BIAS=1.0u CLOAD=0.1p VCM=0.4 \ 
+ parameters _EXPR_2=PULSE_WIDTH*10+1u RESISTOR_0=80k RESISTOR_2=80k \ 
+ MOSFET_0_1_L_LOAD_NMOS=2.8u MOSFET_0_1_M_LOAD_NMOS=20 \ 
+ MOSFET_0_1_W_LOAD_NMOS=2.0u MOSFET_10_1_L_gm1_PMOS=0.9u \ 
+ MOSFET_10_1_M_gm1_PMOS=20 MOSFET_10_1_W_gm1_PMOS=2.0u \ 
+ MOSFET_14_1_L_BIASCM_PMOS=4.9u MOSFET_14_1_M_BIASCM_PMOS=20 \ 
+ MOSFET_14_1_W_BIASCM_PMOS=3.0u MOSFET_2_1_L_gm2_PMOS=60n \ 
+ MOSFET_2_1_M_gm2_PMOS=1.0 MOSFET_2_1_W_gm2_PMOS=0.6u \ 
+ MOSFET_4_1_L_gm3_NMOS=2.8u MOSFET_4_1_M_gm3_NMOS=2.0 \ 
+ MOSFET_4_1_W_gm3_NMOS=1.0u MOSFET_6_1_L_BIASCM_PMOS=1.9u \ 
+ MOSFET_6_1_M_BIASCM_NMOS=1.0 MOSFET_6_1_M_BIASCM_PMOS=20 \ 
+ MOSFET_6_1_W_BIASCM_PMOS=2.0u CURRENT_0_BIAS=19.4u CLOAD=0.1p VCM=0.4 \ 
  VDD=1.1 
- include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/toplevel.scs" section=ss_lib 
-include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/toplevel.scs" section=pre_simu 
+ include "/home/soc/zhihc21/7_Amp_complier/OTA_Compiler_v260103_try/Process_Library/65nm_1p2V/models/toplevel.scs" section=ss_lib 
+include "/home/soc/zhihc21/7_Amp_complier/OTA_Compiler_v260103_try/Process_Library/65nm_1p2V/models/toplevel.scs" section=pre_simu 
 // Library name: 2025_5_DCDC_TO  
  // Cell name: HSOTA_COMP_Pin_2  
  // View name: schematic  
  subckt HSOTA_COMP_Pin_2 GNDA VDDA VINN VINP VOUT  
-     M0 (net14 net20 GNDA GNDA) nch_mac l=MOSFET_0_1_L_LOAD_NMOS \  
+     M0 (net14 net20 GNDA GNDA) nch_lvt_mac l=MOSFET_0_1_L_LOAD_NMOS \  
          w=MOSFET_0_1_W_LOAD_NMOS*1 multi=MOSFET_0_1_M_LOAD_NMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_0_1_W_LOAD_NMOS \  
@@ -31,7 +31,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_LOAD_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_0_1_W_LOAD_NMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_0_1_W_LOAD_NMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_0_1_W_LOAD_NMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M20 (VOUT net2 GNDA GNDA) nch_mac l=MOSFET_4_1_L_gm3_NMOS \  
+     M20 (VOUT net2 GNDA GNDA) nch_lvt_mac l=MOSFET_4_1_L_gm3_NMOS \  
          w=MOSFET_4_1_W_gm3_NMOS*1 multi=MOSFET_4_1_M_gm3_NMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_4_1_W_gm3_NMOS \  
@@ -39,7 +39,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_4_1_W_gm3_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_4_1_W_gm3_NMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_4_1_W_gm3_NMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_4_1_W_gm3_NMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M4 (net11 net14 GNDA GNDA) nch_mac l=MOSFET_4_1_L_gm3_NMOS \  
+     M4 (net11 net14 GNDA GNDA) nch_lvt_mac l=MOSFET_4_1_L_gm3_NMOS \  
          w=MOSFET_4_1_W_gm3_NMOS*1 multi=MOSFET_4_1_M_gm3_NMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_4_1_W_gm3_NMOS \  
@@ -47,7 +47,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_4_1_W_gm3_NMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_4_1_W_gm3_NMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_4_1_W_gm3_NMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_4_1_W_gm3_NMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M1 (net2 net20 GNDA GNDA) nch_mac l=MOSFET_0_1_L_LOAD_NMOS \  
+     M1 (net2 net20 GNDA GNDA) nch_lvt_mac l=MOSFET_0_1_L_LOAD_NMOS \  
          w=MOSFET_0_1_W_LOAD_NMOS*1 multi=MOSFET_0_1_M_LOAD_NMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_0_1_W_LOAD_NMOS \  
@@ -59,7 +59,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
      R0 (net20 net2) resistor r=RESISTOR_0  
      R2 (net21 GNDA) resistor r=RESISTOR_2  
      R3 (GNDA net30) resistor r=RESISTOR_2  
-     M16 (VOUT net11 VDDA VDDA) pch_mac l=MOSFET_14_1_L_BIASCM_PMOS \  
+     M16 (VOUT net11 VDDA VDDA) pch_lvt_mac l=MOSFET_14_1_L_BIASCM_PMOS \  
          w=MOSFET_14_1_W_BIASCM_PMOS*1 multi=MOSFET_14_1_M_BIASCM_PMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_14_1_W_BIASCM_PMOS \  
@@ -67,7 +67,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_14_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_14_1_W_BIASCM_PMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_14_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_14_1_W_BIASCM_PMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M14 (net11 net11 VDDA VDDA) pch_mac l=MOSFET_14_1_L_BIASCM_PMOS \  
+     M14 (net11 net11 VDDA VDDA) pch_lvt_mac l=MOSFET_14_1_L_BIASCM_PMOS \  
          w=MOSFET_14_1_W_BIASCM_PMOS*1 multi=MOSFET_14_1_M_BIASCM_PMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_14_1_W_BIASCM_PMOS \  
@@ -75,7 +75,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_14_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_14_1_W_BIASCM_PMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_14_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_14_1_W_BIASCM_PMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M12 (net32 net4 VDDA VDDA) pch_mac l=MOSFET_6_1_L_BIASCM_PMOS \  
+     M12 (net32 net4 VDDA VDDA) pch_lvt_mac l=MOSFET_6_1_L_BIASCM_PMOS \  
          w=MOSFET_6_1_W_BIASCM_PMOS*1 multi=6*MOSFET_6_1_M_BIASCM_NMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_6_1_W_BIASCM_PMOS \  
@@ -83,7 +83,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_6_1_W_BIASCM_PMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_6_1_W_BIASCM_PMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M3 (net2 net30 net32 net32) pch_mac l=MOSFET_2_1_L_gm2_PMOS \  
+     M3 (net2 net30 net32 net32) pch_lvt_mac l=MOSFET_2_1_L_gm2_PMOS \  
          w=MOSFET_2_1_W_gm2_PMOS*1 multi=MOSFET_2_1_M_gm2_PMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_2_1_W_gm2_PMOS \  
@@ -91,7 +91,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_2_1_W_gm2_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_2_1_W_gm2_PMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_2_1_W_gm2_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_2_1_W_gm2_PMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M2 (net14 net21 net32 net32) pch_mac l=MOSFET_2_1_L_gm2_PMOS \  
+     M2 (net14 net21 net32 net32) pch_lvt_mac l=MOSFET_2_1_L_gm2_PMOS \  
          w=MOSFET_2_1_W_gm2_PMOS*1 multi=MOSFET_2_1_M_gm2_PMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_2_1_W_gm2_PMOS \  
@@ -99,7 +99,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_2_1_W_gm2_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_2_1_W_gm2_PMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_2_1_W_gm2_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_2_1_W_gm2_PMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M7 (net31 net4 VDDA VDDA) pch_mac l=MOSFET_6_1_L_BIASCM_PMOS \  
+     M7 (net31 net4 VDDA VDDA) pch_lvt_mac l=MOSFET_6_1_L_BIASCM_PMOS \  
          w=MOSFET_6_1_W_BIASCM_PMOS*1 multi=6*MOSFET_6_1_M_BIASCM_NMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_6_1_W_BIASCM_PMOS \  
@@ -107,7 +107,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_6_1_W_BIASCM_PMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_6_1_W_BIASCM_PMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M6 (net4 net4 VDDA VDDA) pch_mac l=MOSFET_6_1_L_BIASCM_PMOS \  
+     M6 (net4 net4 VDDA VDDA) pch_lvt_mac l=MOSFET_6_1_L_BIASCM_PMOS \  
          w=MOSFET_6_1_W_BIASCM_PMOS*1 multi=MOSFET_6_1_M_BIASCM_PMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_6_1_W_BIASCM_PMOS \  
@@ -115,7 +115,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_6_1_W_BIASCM_PMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_6_1_W_BIASCM_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_6_1_W_BIASCM_PMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M11 (net30 VINN net31 net31) pch_mac l=MOSFET_10_1_L_gm1_PMOS \  
+     M11 (net30 VINN net31 net31) pch_lvt_mac l=MOSFET_10_1_L_gm1_PMOS \  
          w=MOSFET_10_1_W_gm1_PMOS*1 multi=MOSFET_10_1_M_gm1_PMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_10_1_W_gm1_PMOS \  
@@ -123,7 +123,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
          pd=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_10_1_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*(((1/2)*1.8e-07)*2+1*MOSFET_10_1_W_gm1_PMOS) \  
          ps=(1-int(1/2)*2)*((1.55e-07+((1-1)*1.8e-07)/2+0)*2+(1+1)*MOSFET_10_1_W_gm1_PMOS)+(1+1-int((1+1)/2)*2)*((1.55e-07+1.55e-07+(1/2-1)*1.8e-07+0+0)*2+(1+2)*MOSFET_10_1_W_gm1_PMOS) \  
          nrd=0 nrs=0 spa=180.0n spa1=180.0n  
-     M10 (net21 VINP net31 net31) pch_mac l=MOSFET_10_1_L_gm1_PMOS \  
+     M10 (net21 VINP net31 net31) pch_lvt_mac l=MOSFET_10_1_L_gm1_PMOS \  
          w=MOSFET_10_1_W_gm1_PMOS*1 multi=MOSFET_10_1_M_gm1_PMOS nf=1 \  
          sd=180.0n \  
          ad=((1-int(1/2)*2)*(1.55e-07+((1-1)*1.8e-07)/2+0)+(1+1-int((1+1)/2)*2)*((1/2)*1.8e-07))*MOSFET_10_1_W_gm1_PMOS \  
@@ -155,7 +155,7 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
  simulatorOptions options psfversion="1.4.0" reltol=1e-3 vabstol=1e-6 \  
  iabstol=1e-12 temp=-25 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 \ 
      rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \  
-     sensfile="../psf/sens.output" checklimitdest=psf  
+     sensfile="../psf/sens.output" checklimitdest=psf soft_bin=allmodels  
  ac ac start=0.1 stop=10G annotate=status 
  stb stb start=0.01 stop=100G probe=IPRB0 localgnd=0 annotate=status 
  dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status  

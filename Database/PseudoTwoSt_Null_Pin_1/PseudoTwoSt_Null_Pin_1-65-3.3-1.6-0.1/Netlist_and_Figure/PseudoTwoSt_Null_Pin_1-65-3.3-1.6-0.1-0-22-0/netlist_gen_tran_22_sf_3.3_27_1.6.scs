@@ -5,16 +5,16 @@
  // Design view name: schematic  
  simulator lang=spectre  
  global 0  
- parameters MOSFET_0_1_L_BIASCM0_PMOS=0.539u MOSFET_0_1_M_BIASCM0_PMOS=1.0 \ 
- MOSFET_0_1_W_BIASCM0_PMOS=7.0u MOSFET_2_2_L_LOAD2_PMOS=1.3u \ 
- MOSFET_2_2_M_LOAD2_PMOS=9.0 MOSFET_2_2_W_LOAD2_PMOS=10.0u \ 
- MOSFET_3_2_L_gm1_PMOS=0.8u MOSFET_3_2_M_gm1_PMOS=2.0 \ 
- MOSFET_3_2_W_gm1_PMOS=4.0u MOSFET_5_2_L_LOAD1_NMOS=1.77u \ 
- MOSFET_5_2_M_LOAD1_NMOS=1.0 MOSFET_5_2_W_LOAD1_NMOS=4.0u \ 
- MOSFET_7_1_L_gm2_NMOS=1.6u MOSFET_7_1_M_gm2_NMOS=50.0 \ 
- MOSFET_7_1_W_gm2_NMOS=10.0u CURRENT_0_BIAS=5.75u CLOAD=0.1p VCM=1.6 VDD=3.3 
- include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/toplevel.scs" section=sf_lib 
-include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/toplevel.scs" section=pre_simu 
+ parameters MOSFET_0_1_L_BIASCM0_PMOS=0.4u MOSFET_0_1_M_BIASCM0_PMOS=1.0 \ 
+ MOSFET_0_1_W_BIASCM0_PMOS=2.0u MOSFET_2_2_L_LOAD2_PMOS=1.2u \ 
+ MOSFET_2_2_M_LOAD2_PMOS=40 MOSFET_2_2_W_LOAD2_PMOS=9.0u \ 
+ MOSFET_3_2_L_gm1_PMOS=0.4u MOSFET_3_2_M_gm1_PMOS=1.0 \ 
+ MOSFET_3_2_W_gm1_PMOS=10.0u MOSFET_5_2_L_LOAD1_NMOS=0.8u \ 
+ MOSFET_5_2_M_LOAD1_NMOS=1.0 MOSFET_5_2_W_LOAD1_NMOS=2.0u \ 
+ MOSFET_7_1_L_gm2_NMOS=1.4u MOSFET_7_1_M_gm2_NMOS=50 \ 
+ MOSFET_7_1_W_gm2_NMOS=10.0u CURRENT_0_BIAS=5.3u CLOAD=0.1p VCM=1.6 VDD=3.3 
+ include "/home/soc/zhihc21/7_Amp_complier/OTA_Compiler_v260103_try/Process_Library/65nm_3p3V/models/toplevel.scs" section=sf_lib 
+include "/home/soc/zhihc21/7_Amp_complier/OTA_Compiler_v260103_try/Process_Library/65nm_3p3V/models/toplevel.scs" section=pre_simu 
 // Library name: TSMC22ULL_Std_AMP_LIB  
  // Cell name: PseudoTwoSt_Null_Pin_1  
  // View name: schematic  
@@ -105,12 +105,12 @@ include "/home/soc/zhihc21/7_Amp_complier/FAST_20240508/src/model/Spectre_65/top
  C0 (SR_VOUT 0) capacitor c=CLOAD  
  I17 (0 VDD SR_VOUT SR_VINP SR_VOUT) PseudoTwoSt_Null_Pin_1  
  V1 (SR_VINP 0) vsource dc=0 type=pulse delay=1u edgetype=linear \  
- val0=1.0 val1=2.3 period=1 rise=1p fall=1p width=8.92e-05 
+ val0=1.0 val1=2.3 period=1 rise=1p fall=1p width=5.00e-07 
  simulatorOptions options psfversion="1.4.0" reltol=1e-3 vabstol=1e-6 \  
  iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 \ 
      rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \  
-     sensfile="../psf/sens.output" checklimitdest=psf   
- tran tran stop=1.79e-04 write="spectre.ic" writefinal="spectre.fc" \ 
+     sensfile="../psf/sens.output" checklimitdest=psf soft_bin=allmodels   
+ tran tran stop=2.00e-06 write="spectre.ic" writefinal="spectre.fc" \ 
      annotate=status maxiters=5   
  finalTimeOP info what=oppoint where=rawfile  
  modelParameter info what=models where=rawfile  
