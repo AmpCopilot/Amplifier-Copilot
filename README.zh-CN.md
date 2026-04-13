@@ -11,7 +11,7 @@
   [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey.svg)]()
   
   **• 开源免费  • 投片验证**  
-  <a href="http://121.43.242.223:8501/">
+  <a href="https://www.analogcopilot.com/github">
     <img src="https://img.shields.io/badge/Web%20Copilot-Launch%20Online-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Web Copilot"/>
   </a>
   <br>
@@ -50,7 +50,7 @@
 **新功能：** 网站已接入大模型 API，可通过对话快速获得放大器设计，不需要手动选点。
 
 <p align="center">
-  <a href="http://121.43.242.223:8501/">
+  <a href="https://www.analogcopilot.com/github">
     <img src="https://img.shields.io/badge/Web%20Copilot-Launch%20Online-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Web Copilot"/>
   </a>
 </p>
@@ -133,7 +133,7 @@
 
 
 ## 🚀 快速上手
-如果不想本地安装，可以先用网页版（含大模型对话）：[在线体验](http://121.43.242.223:8501/)
+如果不想本地安装，可以先用网页版（含大模型对话）：[在线体验](https://www.analogcopilot.com/github)
 
 有视频和文字两种用户指南：
 
