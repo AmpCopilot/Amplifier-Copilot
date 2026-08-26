@@ -598,6 +598,13 @@ We sincerely invite developers and researchers interested in the methodologies b
 
 ### 🔬 Core Technologies
 
+#### Behavior-Centric Methodology for Sizing
+**[0] A Behavior-Centric Methodology for High-Performance Amplifier Sizing**
+
+TCAD 2026 | [Paper](https://ieeexplore.ieee.org/document/11664154)
+
+> Decouples the optimization process into an efficient search over behavioral parameters (BPs) and a subsequent BP-to-size direct mapping for a given process.
+
 #### Transistor Modeling & Transfer Learning
 **[1] Analog Circuit Transfer Method Across Technology Nodes via Transistor Behavior**  
 *H. Zhi, J. Li, Y. Li, and W. Shan*  
