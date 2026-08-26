@@ -557,6 +557,14 @@ MIT License - 商业与个人免费使用
 
 ### 🔬 核心技术
 
+#### 放大器的行为级抽象方法
+**[0] A Behavior-Centric Methodology for High-Performance Amplifier Sizing**
+
+TCAD 2026 | [Paper](https://ieeexplore.ieee.org/document/11664154)
+
+> 把sizing空间从高度非线性的晶体管尺寸空间，换成更加线性的行为级描述参数空间；将最非线性的部分用查找表的方法直接求解。
+
+
 #### 晶体管建模与迁移学习
 **[1] Analog Circuit Transfer Method Across Technology Nodes via Transistor Behavior**  
 *H. Zhi, J. Li, Y. Li, and W. Shan*  
